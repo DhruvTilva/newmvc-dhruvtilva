@@ -1,0 +1,33 @@
+<style>
+.success{
+        background-color: lightgreen;
+       }
+.failure{
+        background-color: red;
+       }
+.notice{
+        background-color: orange;
+        }
+</style>
+<div>
+<?php 
+
+
+$messageModel=new Model_Core_Message();
+$messages=$messageModel->getMessages();
+
+
+if($messages){
+        foreach ($messages as $type => $message) {
+                echo "<p class='{$type}'>";
+                echo $message;
+                echo "</p>";
+        }
+}
+$messageModel->clearMessage();
+
+
+
+
+?>
+</div>

@@ -1,0 +1,42 @@
+<?php
+
+$url=new Model_Core_Url();
+
+?>
+
+
+<style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+       .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3px;
+        background-color: lightgrey;
+
+       }
+       
+       .header a{
+        color: black;
+        padding: 30px;
+        justify-content: center;
+        font-size: large;
+       }
+       
+       
+    </style>
+
+
+
+<div class="header">
+        <h2>BMVC Structure</h2>
+	<a href="<?php echo ($url->getUrl('product','grid'));?>">Product</a>
+	<a href="<?php echo ($url->getUrl('category','grid'));?>">Category</a>
+	<a href="<?php echo ($url->getUrl('customer','grid'));?>">Customer</a>
+	<a href="<?php echo ($url->getUrl('vendor','grid'));?>">Vendor</a>
+	<a href="<?php echo ($url->getUrl('salesman','grid'));?>">Salesman</a>
+	<a href="<?php echo ($url->getUrl('shipping','grid'));?>">Shipping Method</a>
+	<a href="<?php echo ($url->getUrl('payment','grid'));?>">Payment Method</a>
+        <a href="<?php echo ($url->getUrl('eav_attribute','grid'));?>">EAV</a>
+</div>

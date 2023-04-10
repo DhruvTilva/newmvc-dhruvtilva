@@ -1,0 +1,53 @@
+<?php
+$url=Ccc::getModel('Core_Url');
+$attributes = $this->getAttributes();
+?>
+<div class="content-main">
+        <div class="content">
+            <h2>Manage Attribute Content</h2>
+            <a href="<?php echo ($url->getUrl('eav_attribute','add'));?>">Add Attribute</a>
+        
+        </div>
+        <div>
+            <table border="3px" width="80%">
+                <tr>
+                    <th>Attribute_id</th>
+                    <th>Entity_Type_ID</th>
+                    <th>Code</th>
+                    <th>BAckend Type</th>
+                    <th>name</th>
+                    <th>status</th>
+                    <th>backendmodel</th>
+                    <th>inputtype</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                   
+                </tr>
+
+                <?php
+                //feching data to form from database
+                foreach($attributes->getData() as $row){
+
+                ?>
+
+                <tr>
+                    <!-- all attributes of database -->
+                    <td><?php echo $row->attribute_id; ?></td>
+                    <td><?php echo $row->entity_type_id; ?></td>
+                    <td><?php echo $row->code; ?></td>
+                    <td><?php echo $row->backend_type; ?></td>
+                    <td><?php echo $row->name; ?></td>
+                    <td><?php echo $row->status; ?></td>
+                    <td><?php echo $row->backend_model; ?></td>
+                    <td><?php echo $row->input_type; ?></td>
+                    <td><a href="<?php echo ($url->getUrl('eav_attribute','edit',['id'=>$row->attribute_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('eav_attribute','delete',['id'=>$row->attribute_id]));?>">delete</a></td>
+                   
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+
+        </div>
+    </div>

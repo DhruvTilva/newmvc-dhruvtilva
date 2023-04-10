@@ -1,0 +1,57 @@
+<?php
+$url=Ccc::getModel('Core_Url');
+
+$customers = $this->getCustomers();
+
+// print_r($customers); die;
+
+
+?>
+
+    <div class="content-main">
+        <div class="content">
+            <h2>Manage Customer Content</h2>
+            <a href="<?php echo ($url->getUrl('customer','add'));?>">Add Customer</a>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <th>Customer_id</th>
+                    <th>First_name</th>
+                    <th>Last_name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>inserted_at</th>
+                    <th>updated_at</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+               <?php
+                //feching data to form from database
+                foreach($customers->getData() as $row){
+
+                ?>
+
+                
+                <tr>
+                    <td><?php echo $row->customer_id; ?></td>
+                    <td><?php echo $row->firstname; ?></td>
+                    <td><?php echo $row->lastname; ?></td>
+                    <td><?php echo $row->email; ?></td>
+                    <td><?php echo $row->gender; ?></td>
+                    <td><?php echo $row->mobile; ?></td>
+                    <td><?php echo $row->getStatusText(); ?></td>
+                    <td><?php echo $row->inserted_at; ?></td>
+                    <td><?php echo $row->updated_at; ?></td>
+                    <td><a href="<?php echo ($url->getUrl('customer','edit',['id'=>$row->customer_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('customer','delete',['id'=>$row->customer_id]));?>">delete</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+       

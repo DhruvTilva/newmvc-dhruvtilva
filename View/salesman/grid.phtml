@@ -1,0 +1,64 @@
+<?php
+
+// $salesmans=$this->getSalesmans();
+// require_once 'Model/Core/Url.php';
+// require_once 'Model/Core/Table/Row.php';
+$url=new Model_Core_Url();
+$salesmans = $this->getSalesmans();
+// print_r($salesmans); die;
+
+?>
+
+
+
+    
+    <div class="content-main">
+        <div class="content">
+            <h2>Manage Salesman Content</h2>
+            <a href="<?php echo ($url->getUrl('salesman','add'));?>">Add Salesman</a>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <th>Salesman_id</th>
+                    <th>First_name</th>
+                    <th>Last_name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>inserted_at</th>
+                    <th>updated_at</th>
+                    <th>Salesman_price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <?php
+                //feching data to form from database
+                foreach($salesmans->getData() as $row){
+
+                ?>
+                <tr>
+                    <!-- all attributes of database -->
+                    <td><?php echo $row->salesman_id; ?></td>
+                    <td><?php echo $row->firstname;?></td>
+                    <td><?php echo $row->lastname;?></td>
+                    <td><?php echo $row->email; ?></td>
+                    <td><?php echo $row->gender; ?></td>
+                    <td><?php echo $row->mobile; ?></td>
+                    <td><?php echo $row->getStatusText(); ?></td>
+                    <td><?php echo $row->company; ?></td>
+                     <td><?php echo $row->inserted_at; ?></td>
+                    <td><?php echo $row->updated_at; ?></td>
+                    <td><a href="Index.php?c=Sprice&a=grid&id=<?php echo $row->salesman_id; ?>">SalesmanPrice</a></td>
+                    <td><a href="<?php echo ($url->getUrl('salesman','edit',['id'=>$row->salesman_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('salesman','delete',['id'=>$row->salesman_id]));?>">delete</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+   
