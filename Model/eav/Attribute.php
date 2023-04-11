@@ -27,7 +27,7 @@ class Model_Eav_Attribute extends Model_Core_Table
 
     public function getEntityType()
     {
-        $sql = "SELECT `entity_type_id`,`name` FROM `entity_type` ORDER BY `entity_type_id` ASC";
+        $sql = "SELECT `entity_type_id`,`name` FROM `entity_type` ORDER BY `entity_type_id` ";
         return $this->getResource()->getAdapter()->fetchPairs($sql); 
     }
  }

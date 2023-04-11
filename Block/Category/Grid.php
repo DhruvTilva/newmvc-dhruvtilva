@@ -16,7 +16,7 @@ class Block_Category_Grid extends Block_Core_Template
 
 	public function getCategorys()
 	{
-		$sql = "SELECT * FROM `category` WHERE `category_id` > 1 ORDER BY `path` ASC";
+		$sql = "SELECT * FROM `category` WHERE `category_id` ORDER BY `path` ASC";
 
 		$row = Ccc::getModel('Category');
 		$categorys = $row->fetchAll($sql);

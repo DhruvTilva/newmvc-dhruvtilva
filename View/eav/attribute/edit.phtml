@@ -29,7 +29,7 @@ $attribute = $this->attribute;
             </tr>
             <tr>
                 <td>Entity_Type_ID: </td>
-                <td><input type="text" name="attribute[entity_type_id]"  value="<?php echo $attribute->entity_type_id;?>"></td>
+                <td><input type="text" name="attribute[entity_type_id]" value="<?php echo $attribute->entity_type_id;?>"></td>
             </tr>
             <tr>
                 <td>Code </td>
@@ -37,7 +37,13 @@ $attribute = $this->attribute;
             </tr>
             <tr>
                 <td>BAckend Type </td>
-                <td><input type="text" name="attribute[backend_type]"  value="<?php echo $attribute->backend_type;?>"></td>
+                <td><select class="form-control" name="attribute[backend_type]">
+                <option value="int" <?php echo ($attribute->backend_type == 'int') ? 'selected':'' ?>>Integer</option>
+                <option value="varchar" <?php echo ($attribute->backend_type == 'varchar') ? 'selected':'' ?>>Varchar</option>
+                <option value="decimal" <?php echo ($attribute->backend_type == 'decimal') ? 'selected':'' ?>>Decimal</option>
+                <option value="datetime" <?php echo ($attribute->backend_type == 'datetime') ? 'selected':'' ?>>Date and Type</option>
+                <option value="text" <?php echo ($attribute->backend_type == 'text') ? 'selected':'' ?>>Text</option>
+            </select></td>
             </tr>
             <tr>
                 <td>name </td>
@@ -61,7 +67,14 @@ $attribute = $this->attribute;
             
             <tr>
                 <td>inputtype </td>
-                <td><input type="text" name="attribute[input_type]" value="<?php echo $attribute->input_type;?>"> </td>
+                <td><select class="form-control" name="attribute[input_type]" id="inputTypeSelect">
+                <option value="textarea" <?php echo ($attribute->input_type == 'textarea') ? 'selected':'' ?>>Text Area</option>
+                <option value="text" <?php echo ($attribute->input_type == 'text') ? 'selected':'' ?>>Text Box</option>
+                <option value="select" <?php echo ($attribute->input_type == 'select') ? 'selected':'' ?>>Select</option>
+                <option value="multiselect" <?php echo ($attribute->input_type == 'multiselect') ? 'selected':'' ?>>Multi-Select</option>
+                <option value="radio" <?php echo ($attribute->input_type == 'radio') ? 'selected':'' ?>>Radio</option>
+                <option value="checkbox" <?php echo ($attribute->input_type == 'checkbox') ? 'selected':'' ?>>Check-Box</option>
+            </select> </td>
             </tr>
             
 
@@ -71,4 +84,3 @@ $attribute = $this->attribute;
             
         </form>
     </div>
-       
