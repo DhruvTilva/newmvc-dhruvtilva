@@ -11,7 +11,8 @@ class Model_Core_Table_Collection
 
 	public function setData($data)			
 	{
-		$this->data=array_merge($this->data,$data);
+		$this->data=$data;
+		// array_merge($this->data,$data);
 		return $this;
 	}
 

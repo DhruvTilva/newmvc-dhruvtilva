@@ -21,6 +21,7 @@ class Block_Category_Grid extends Block_Core_Template
 		$row = Ccc::getModel('Category');
 		$categorys = $row->fetchAll($sql);
 		// $this->setData(['categorys'=>$categorys]);
+		// print_r($categorys); die;
 		return $categorys;
 	}
 }
