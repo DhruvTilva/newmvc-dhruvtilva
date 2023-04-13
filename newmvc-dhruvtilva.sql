@@ -116,10 +116,10 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `parent_id`, `path`, `name`, `status`, `description`, `inserted_at`, `updated_at`) VALUES
-(2, 6, '', 'electronics', 'active', 'very cheap electronic items', '2023-02-14 12:04:42', '2023-02-14 12:04:42'),
-(3, 0, '', 'samsung f23 5g 6gb', 'active', 'budget phone', '2023-02-14 12:04:42', '2023-02-14 12:04:42'),
-(5, 0, '', 'hhgh', 'active', 'erer', '2023-03-27 11:24:35', '2023-03-27 11:24:35'),
+INSERT INTO `category` (`category_id`, `parent_id`, `name`, `path`, `status`, `description`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Root', '1', '1', 'This is Main Root Element', '2023-04-10 11:30:15', '0000-00-00 00:00:00'),
+(2, 1, 'Bedroom', '1=2', '1', '', '2023-04-10 11:30:27', '2023-04-10 11:33:48'),
+(3, 1, 'Living Room', '1=3', '1', '', '2023-04-10 11:30:42', '0000-00-00 00:00:00'),
 (6, 0, '', 'ssssss', 'active', 'dddd', '2023-03-31 14:17:24', '2023-03-31 14:17:24'),
 (7, 0, '', 'sssss', 'active', '', '2023-03-31 14:48:56', '2023-03-31 14:48:56'),
 (8, 0, '', 'eeeeeeeeee', 'active', 'wwwwwwwww', '2023-03-31 14:49:07', '2023-03-31 14:49:07');
