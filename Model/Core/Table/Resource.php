@@ -84,7 +84,7 @@ class Model_Core_Table_Resource
 		$valueString="'".implode("','", $values)."'";
 
 		$sql="INSERT INTO `{$this->getTableName()}` ({$keyString}) VALUES ({$valueString})";
-	
+		// echo $sql; die();
 		return $this->getAdapter()->insert($sql);
 
 	}

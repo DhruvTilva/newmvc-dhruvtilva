@@ -31,7 +31,7 @@ $url=Ccc::getModel('Core_Url');
                 ?>
                 <tr>
                     <td><?php echo $row->category_id; ?></td>
-                    <td><?php echo $row->name;?></td>
+                    <td><?php echo $row->getPathText();?></td>
                     <td><?php echo $row->getStatusText(); ?></td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->inserted_at; ?></td>

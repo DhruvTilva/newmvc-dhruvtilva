@@ -1,12 +1,7 @@
 <?php
-
-// $category = $this->getCayegorys();
-// require_once 'Model/Core/Url.php';
 $url = new Model_Core_Url();
-// $category = $this->categories;
-// $category=$this->getData();
 $category=$this->category;
-$parentCategories=$category->getParentCategories();
+$parent=$category->getParentCategories();
 
 
 
@@ -20,7 +15,7 @@ $parentCategories=$category->getParentCategories();
             <table>
                 <tr>
                     <td>
-                        <h1>Edit Category</h1>
+                        <h1>Save Category</h1>
                     </td>
                     <td class="sub-head">
                         <a href="<?php echo ($url->getUrl('category','grid'));?>">Cancel</a>
@@ -42,7 +37,7 @@ $parentCategories=$category->getParentCategories();
                     <td>Parent</td>
                     <td>
                         <select name="category[parent_id]">
-                            <?php foreach($parentCategories as $id=>$path){ ?>
+                            <?php foreach($parent as $id=>$path){ ?>
                                 <?php $selected = ($category->selectPath() == $path) ? 'selected':'' ?>
                                 <option value="<?php echo $id ?>" <?php echo $selected ?>><?php echo $category->getPathText($path) ?></option>
                             <?php } ?>
@@ -53,10 +48,10 @@ $parentCategories=$category->getParentCategories();
                     <td>Status</td>
                     <td>
                         <select name="category[status]">
-                            <?php foreach ($category->getResource()->getStatusOptions() as $key => $value){?>
+                             <?php foreach ($category->getResource()->getStatusOptions() as $key => $value): ?>
                             <?php $selected = ($key == $category->getStatus()) ? 'selected':'' ?>
-                            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-                            <?php } ?>
+                            <option <?php echo $selected; ?>><?php echo $value ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>

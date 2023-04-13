@@ -10,6 +10,7 @@ class Model_Product extends Model_Core_Table
     protected $collectionClass= 'Model_Core_Table_Collection';
 
 
+
 	public function getStatusText()
     {
         $statues = $this->getResource()->getStatusOptions();
@@ -27,6 +28,50 @@ class Model_Product extends Model_Core_Table
         return Model_Product_Resource::STATUS_DEFAULT;
     }
 
+
+
+
+    public function getThumb()
+    {
+        $medias = $this->getMedias();
+        if($medias->thumb == 1){
+            echo "checked";
+        }
+        else{
+        return false;
+        }
+    }
+
+
+
+
+    public function getSmall()
+    {
+        $medias = $this->getMedias();
+        if($medias->small == 1){
+            echo "checked";
+        }
+        else{
+            return false;
+        }
+    }
+
+
+
+    public function getBase()
+    {
+        $medias = $this->getMedias();
+        if($medias->base == 1){
+             echo "checked";
+        }
+        else{
+
+            return false;
+        }
+        
+    }
+
+    
 
 
 

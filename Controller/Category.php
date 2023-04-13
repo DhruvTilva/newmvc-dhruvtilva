@@ -12,7 +12,8 @@
     public function gridAction()
     {
 
-        
+        // echo "<pre>";
+        // echo 111; die();
         $sql = "SELECT * FROM `category`";
         $categoryR = Ccc::getModel('Category'); 
         $categorys = $categoryR->fetchAll($sql);
@@ -101,15 +102,19 @@
             if (!$data) {
                 throw new Exception("no data posted");
             }
-            $categoryId=$this->getRequest()->getParams('cid');
-            $category=Ccc::getModel('Category')->load($categoryId);
-            if (!$category) {
-                $category=Ccc::getModel('Category');
+             date_default_timezone_set('Asia/Kolkata');
 
+            if($id = (int) $this->getRequest()->getParams('id')){
+                $category = Ccc::getModel('Category')->load($id);
+                if(!$category){
+                    throw new Exception("Invalid Id.", 1);
+                }
+                $category->updated_at = date("Y-m-d h:i:s");
             }
-            
-            else{
-                $category->created_at = date('Y-m-d H:i:s');
+            else
+            {
+                $category = Ccc::getModel('Category');
+                $category->created_at = date("Y-m-d h:i:s");
             }
             $category->setData($data);
             if (!$category->Save()) {

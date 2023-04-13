@@ -1,7 +1,7 @@
 <?php
 
 
-class Model_Category_Resource extends Model_Core_Table
+class Model_Category_Resource extends Model_Core_Table_Resource
 {
 	
 	public $tableName = 'category';

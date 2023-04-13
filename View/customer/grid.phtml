@@ -23,6 +23,8 @@ $customers = $this->getCustomers();
                     <th>Gender</th>
                     <th>Mobile</th>
                     <th>Status</th>
+                    <!-- <th>BillingAdd</th>
+                    <th>ShippingAdd</th> -->
                     <th>inserted_at</th>
                     <th>updated_at</th>
                     <th>Edit</th>
@@ -43,6 +45,7 @@ $customers = $this->getCustomers();
                     <td><?php echo $row->gender; ?></td>
                     <td><?php echo $row->mobile; ?></td>
                     <td><?php echo $row->getStatusText(); ?></td>
+                   
                     <td><?php echo $row->inserted_at; ?></td>
                     <td><?php echo $row->updated_at; ?></td>
                     <td><a href="<?php echo ($url->getUrl('customer','edit',['id'=>$row->customer_id]));?>">edit</a></td>

@@ -69,32 +69,32 @@ $vendor = $this->vendor;
                 </tr>
                
             </table>
-            <table broder="2px" style="border-collapse: collapse">
+            <table  style="border-collapse: collapse">
               
             <tr>
-                <th colspan="2"><h3>Address</h3></th>
+                <th colspan="2"><h3> Billing Address</h3></th>
             </tr>
             <tr>
                 <td>
-                    Address:
+                    Billing Address:
                 </td>
                 <td><textarea name="address[address]"><?php echo $vendor->address; ?></textarea></td>
 
             </tr>
             <tr>
-                <td>city:</td>
+                <td>Billing city:</td>
                 <td><input type="text" name="address[city]" value="<?php echo $vendor->city; ?>"></td>
             </tr>
             <tr>
-                <td>state:</td>
+                <td>Billing state:</td>
                 <td><input type="text" name="address[state]" value="<?php echo $vendor->state; ?>"></td>
             </tr>
             <tr>
-                <td>country:</td>
+                <td>Billing country:</td>
                 <td><input type="text" name="address[country]" value="<?php echo $vendor->country; ?>"></td>
             </tr>
             <tr>
-                <td>zipcode:</td>
+                <td>Billing zipcode:</td>
                 <td><input type="text" name="address[zipcode]" value="<?php echo $vendor->zipcode; ?>"></td>
             </tr>
             
@@ -103,3 +103,43 @@ $vendor = $this->vendor;
         </form>
     </div>
       
+
+      <div>
+
+            <div class="content">
+            <table  broder="2px" style="border-collapse: collapse">
+
+                <tr>
+                    <th colspan="2"><h3> Shipping Address</h3></th>
+                </tr>
+                <tr>
+                    <td>
+                       Shipping Address:
+                    </td>
+                    <td><textarea name="address[address]"><?php echo $vendor->address; ?></textarea></td>
+
+                </tr>
+                <tr>
+                    <td>shipping city:</td>
+                    <td><input type="text" name="address[city]" value="<?php echo $vendor->city; ?>"></td>
+                </tr>
+                <tr>
+                    <td> shipping state:</td>
+                    <td><input type="text" name="address[state]" value="<?php echo $vendor->state; ?>"></td>
+                </tr>
+                <tr>
+                    <td> shipping country:</td>
+                    <td><input type="text" name="address[country]" value="<?php echo $vendor->country; ?>"></td>
+                </tr>
+                <tr>
+                    <td>shipping zipcode:</td>
+                    <td><input type="text" name="address[zipcode]" value="<?php echo $vendor->zipcode; ?>"></td>
+                </tr>
+
+
+            </table>
+            <div>
+
+        </form>
+    </div>
+</div>

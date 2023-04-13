@@ -1,0 +1,51 @@
+<?php
+// $payments = $this->getPayments();
+// require_once 'Model/Core/Url.php';
+$url=Ccc::getModel('Core_Url');
+$payments = $this->getCollection();
+
+// require_once 'Model/Core/Table/Row.php';
+
+
+
+?>
+
+    <div class="content-main">
+        <div class="content">
+            <?php echo $this->getTitle(); ?>
+            <?php foreach($this->getButtons() as $key => $button) : ?>
+            <a href="<?php echo $button['url'];?>"></a><?php echo $button['title'] ?></a>
+            <?php endforeach; ?>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                  <?php foreach($this->getColumns() as $key => $column) : ?>
+                    <th><?php echo $column['title']; ?></th>
+                <?php endforeach;?>
+
+                <?php foreach($this->getActions() as $key => $action) : ?>
+                    <th><?php echo $action['title']; ?></th>
+                <?php endforeach;?>
+                </tr>
+                <?php
+                //feching data to form from database
+                foreach($rows as $row){
+
+                ?>
+                <tr>
+                    <!-- all attributes of database -->
+                    <?php foreach ($this->getColumns() as $key => $column):?> 
+                    <td><?php echo $this->getColumnValue($row,$key);?> </td>
+                <?php endforeach;?>
+
+                <?php foreach ($this->getActions() as $key => $action):?> 
+                    <td><a href="<?php $method=$action['method']; echo $this->$method($row,$key);?>"><?php echo $action['title'];?></a> </td>
+                <?php endforeach;?>
+                    
+                </tr>
+               
+            </table>
+        </div>
+    </div>
+   

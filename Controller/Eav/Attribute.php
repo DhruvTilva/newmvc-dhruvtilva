@@ -114,7 +114,7 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 			if(!$request->isPost()){
 				throw new Exception("Error Request");
 			}
-			$data = $request->getPost('eav_attribute');
+			$data = $request->getPost('attribute');
 			if (!$data) {
 				throw new Exception("no data posted");
 			}

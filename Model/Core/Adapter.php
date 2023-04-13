@@ -55,20 +55,20 @@ class Model_Core_Adapter
 	}
 
 
-	public function fetchPairs($query)
-	{
-		$fetchPairs=$this->query($query);
-		if(!$fetchPairs){
-			return False;
+	public function fetchPairs($sql)
+	{	
+		$result = $this->query($sql);
+		if(!$result){
+			return false;
 		}
-		return $fetchPairs->fetch_all();
 
-		$column1=array_column($data, '0');
-		$column2=array_column($data, '1');
-		if (!$column2) {
-			$column2=array_fill(0, count($column2), null);
+		$data = $result->fetch_all();
+		$column1 = array_column($data, '0');
+		$column2 = array_column($data, '1');
+		if(!$column2){
+			$column2 = array_fill(0, count($column1), Null);
 		}
-		return array_combine($column1,$column2);
+		return array_combine($column1, $column2);
 	}
 
 	//insert a data into table

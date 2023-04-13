@@ -45,6 +45,9 @@ $products = $this->getProducts();
                     <th>Material</th>
                     <th>inserted_at</th>
                     <th>updated_at</th>
+                   <!--  <th>Thumbnail</th>
+                    <th>Small</th>
+                    <th>Base</th> -->
                     <th>Media</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -69,6 +72,8 @@ $products = $this->getProducts();
                     <td><?php echo $row->material; ?></td>
                     <td><?php echo $row->inserted_at; ?></td>
                     <td><?php echo $row->updated_at; ?></td>
+                   
+                    
                     <td><a href="Index.php?c=product_media&a=grid&id=<?php echo $row->product_id; ?>">ProductMedia</a></td>
                     <td><a href="<?php echo ($url->getUrl('product','edit',['id'=>$row->product_id]));?>">edit</a></td>
                     <td><a href="<?php echo ($url->getUrl('product','delete',['id'=>$row->product_id]));?>">delete</a></td>
@@ -80,3 +85,6 @@ $products = $this->getProducts();
 
         </div>
     </div>  
+ <td><input type="radio" name="thumb" value="<?php echo $row->getThumb();?>"></td>
+                    <td><input type="radio" name="small" value="<?php echo $row->image_id; ?>" <?php $row->getSmall();?>></td>
+                    <td><?php echo $row->getBase(); ?></td>
