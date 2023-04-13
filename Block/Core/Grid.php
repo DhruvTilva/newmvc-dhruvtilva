@@ -1,142 +1,160 @@
 <?php
-/**
- * 
- */
+
 class Block_Core_Grid extends Block_Core_Template
 {
 
-	protected $title=null;
-	protected $columns=[];
-	protected $actions=[];
-	protected $buttons=[];
+	protected $_title = null;
+	protected $_columns = [];
+	protected $_actions = [];
+	protected $_buttons = [];
 
-	
 	function __construct()
 	{
 		parent::__construct();
 		$this->setTemplate('core/grid.phtml');
 		$this->_prepareColumns();
-		$this->_prepareActions();
-		$this->_prepareButtons();
-		$this->setTitle('MAnage Grid');
-
+		$this->_prepareActions(); 
+		$this->_prepareButtons(); 
+		$this->setTitle('Manage Grid');
 	}
 
 	public function getColumns()
 	{
-		return $this->columns;
+		return $this->_columns;
 	}
-
 	public function setColumns(array $columns)
-	{				
-		$this->columns=$columns;
-		return $this;
-	}
-	protected function _prepareColumns(){
-		return $this;
-	}
-
-	public function addColumn($key,$value)
 	{
-		$this->columns[$key]=$value;
+		$this->_columns = $columns;
 		return $this;
 	}
 
+	public function addColumn($key, $value)
+	{
+		$this->_columns[$key] = $value;
+		return $this;
+	}
 	public function removeColumn($key)
 	{
-		unset($this->columns[$key]);
-		return $this;
-	} 
-	public function addAction($key,$value)
-	{
-		$this->actions[$key]=$value;
+		unset($this->_columns[$key]);
 		return $this;
 	}
-	public function getAction($key)
+	public function getColumn($key)
 	{
-		if (array_key_exists($key,$this->actions)) {
-			return $this->actions[$key];
+		if(array_key_exists($key, $this->_columns))
+		{
+			return $this->_columns[$key];
 		}
 		return null;
 	}
 
-	public function _prepareActions()
+	protected function _prepareColumns()
 	{
-		$this->addAction('edit', [
-			'title'=>'Edit',
-			'method'=>'getEditUrl'
-		]);
-
-		$this->addAction('delete', [
-			'title'=>'Delete',
-			'method'=>'getDeleteUrl'
-		]);
+		return $this;
 	}
 
-	public function getEditUrl($row,$key)
-	{				
-		return $this->getUrl($key,null,['id'=>$row->getId()],true);
-	}
 
-	public function getDeleteUrl($row,$key)
-	{				
-		return $this->getUrl($key,null,['id'=>$row->getId()],true);
-	}
-
-	public function getColumnValue($row,$key)
+	public function getActions()
 	{
-		if ($key=='status') {
+		return $this->_actions;
+	}
+	public function setActions(array $actions)
+	{
+		$this->_actions = $actions;
+		return $this;
+	}
+
+	public function addAction($key, $value)
+	{
+		$this->_actions[$key] = $value;
+		return $this;
+	}
+	public function removeAction($key)
+	{
+		unset($this->_actions[$key]);
+		return $this;
+	}
+	public function getAction($key)
+	{
+		if(array_key_exists($key, $this->_actions))
+		{
+			return $this->_actions[$key];
+		} 
+		return null;
+	}
+
+	protected function _prepareActions()
+	{
+		return $this;
+	}
+
+	public function getEditUrl($row, $key)
+	{
+		return $this->getUrl($key, null, ['id' => $row->getId()], true);
+	}
+	public function getDeleteUrl($row, $key)
+	{
+		return $this->getUrl($key, null, ['id' => $row->getId()], true);
+	}
+
+
+	public function getColumnValue($row, $key)
+	{
+		if($key == 'status')
+		{
 			return $row->getStatusText();
 		}
 		return $row->$key;
 	}
 
+
+
 	public function getButtons()
 	{
-		return $this->buttons;
+		return $this->_buttons;
 	}
 	public function setButtons(array $buttons)
 	{
-		$this->buttons=$buttons;
-	}
-
-	public function addButton($key,$value)
-	{
-		$this->buttons[$key]=$value;
+		$this->_buttons = $buttons;
 		return $this;
 	}
-	public function removeButton()
-	{		
-		unset($this->buttons[$key]);
+
+	public function addButton($key, $value)
+	{
+		$this->_buttons[$key] = $value;
+		return $this;
+	}
+	public function removeButton($key)
+	{
+		unset($this->_buttons[$key]);
 		return $this;
 	}
 	public function getButton($key)
 	{
-		if (array_key_exists($key,$this->buttons)) {
-			return $this->buttons[$key];
+		if(array_key_exists($key, $this->_buttons))
+		{
+			return $this->_buttons[$key];
 		}
 		return null;
 	}
 
-	public function _prepareButtons()
+	protected function _prepareButtons()
 	{
-		$this->addButton();
-	}
+		return $this;	
+	} 
+
 	public function setTitle($title)
 	{
-		$this->title=$title;
+		$this->_title = $title;
 		return $this;
 	}
 
 	public function getTitle()
-	{		
-		return $this->title;
+	{
+		return $this->_title;
 	}
-
-
 
 }
 
+	
 
-
- ?>
+?>

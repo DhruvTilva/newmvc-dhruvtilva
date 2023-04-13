@@ -12,10 +12,8 @@ class Block_Payment_Grid extends Block_Core_Grid
 	function __construct()
 	{
 		parent::__construct();
-		$this->setTemplate('payment/grid.phtml');
-		$this->_prepareColumns();
-		$this->_prepareActions();
-		$this->_prepareButtons();
+		// $this->setTemplate('payment/grid.phtml');
+		
 		$this->setTitle('MAnage  Payment Grid');
 
 	}
@@ -63,20 +61,22 @@ class Block_Payment_Grid extends Block_Core_Grid
 
 	public function _prepareButtons()
 	{	
-		
+		$url=Ccc::getModel('Core_Url');
 		$this->addButton('payment_id',[
 			'title'=>'ADD New',
-			'url'=> $this->getUrl('add')
+			'url'=> $url->getUrl(null,'add')
 		]);
 		return parent::_prepareButtons();
 
 	}
 
-	public function getCollection()
-	{			
-		$sql= "SELECT * FORM `payment_method` ORDER BY `name` DESC;";
-		$payments=Ccc::getModel('Payment')->fetchAll($sql);
-		return $payments->getData();
+	public function getPayments()
+	{
+		$sql = "SELECT * FROM `payment` ORDER BY `payment_id` ";
+		$row = Ccc::getModel('Payment');
+		$payments = $row->fetchAll($sql);
+		return $payments;
+		
 	}
 
 

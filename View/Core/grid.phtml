@@ -2,7 +2,11 @@
 // $payments = $this->getPayments();
 // require_once 'Model/Core/Url.php';
 $url=Ccc::getModel('Core_Url');
-$payments = $this->getCollection();
+$payments = $this->getPayments();
+
+// $e=is_object($payments);
+// echo "<pre>";
+// print_r($e); die();
 
 // require_once 'Model/Core/Table/Row.php';
 
@@ -30,7 +34,7 @@ $payments = $this->getCollection();
                 </tr>
                 <?php
                 //feching data to form from database
-                foreach($rows as $row){
+                foreach($payments->getData() as $row):
 
                 ?>
                 <tr>
@@ -44,6 +48,8 @@ $payments = $this->getCollection();
                 <?php endforeach;?>
                     
                 </tr>
+                <?php endforeach;?>
+
                
             </table>
         </div>
