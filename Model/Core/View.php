@@ -6,8 +6,8 @@
 class Model_Core_View 
 {
 	
-	protected $template=null;
 	protected $data=[];
+	protected $template=null;
 
 	function __construct()
 	{
@@ -59,6 +59,11 @@ class Model_Core_View
 			return false;
 		}
 		return $this->data;
+	}
+	public function getUrl($a = Null, $c = Null, $params = [], $resetParams = false)
+	{
+		$url = Ccc::getModel('Core_Url');
+		return $url->getUrl($a,$c,$params,$resetParams);
 	}
 
 	public function render(){

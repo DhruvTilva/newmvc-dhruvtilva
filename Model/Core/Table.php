@@ -16,6 +16,12 @@ class Model_Core_Table
 
 
 
+ public function __construct()
+    {
+        
+    }
+
+
 	public function __get($key) {
     if (array_key_exists($key, $this->data)) {
       return $this->data[$key];
@@ -143,8 +149,14 @@ class Model_Core_Table
 	}
 
 
-	public function removeData($key){
-		unset($this->data[$key]);
+	public function removeData($key = Null)
+	{
+		if(!$key){
+			$this->data = [];
+		}
+		if (array_key_exists($key, $this->data)) {
+			unset($this->data[$key]);
+		}
 		return $this;
 	}
 

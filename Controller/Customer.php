@@ -58,7 +58,7 @@ class Controller_Customer extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Customer not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('customer','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -90,7 +90,7 @@ class Controller_Customer extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Customer Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('customer','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -139,12 +139,12 @@ class Controller_Customer extends Controller_Core_Action
 			}
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Customer saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('customer','grid');
+			$this->redirect('grid');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Customer not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('customer','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -171,7 +171,7 @@ class Controller_Customer extends Controller_Core_Action
 		{
 			$message->addMessage('Customer is Not Deleted',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('customer','grid');
+		$this->redirect('grid');
 }
 }
 

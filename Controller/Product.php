@@ -13,12 +13,12 @@ class Controller_Product extends Controller_Core_Action
 
 	public function testAction()
 	{	
-		$product = Ccc::getModel('Product_Row');
-		$sql = "SELECT * FROM `product`";
-		$collection = $product->fetchAll($sql);
+		// $product = Ccc::getModel('Product_Row');
+		// $sql = "SELECT * FROM `product`";
+		// $collection = $product->fetchAll($sql);
 
-		echo "<pre>";
-		print_r($collection);
+		// echo "<pre>";
+		// print_r($collection);
 		
 
 
@@ -96,7 +96,7 @@ class Controller_Product extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Product not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('product','grid');
+			$this->redirect('grid');
 		}
 		
 	}
@@ -137,7 +137,7 @@ class Controller_Product extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Product Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('product','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -168,7 +168,7 @@ class Controller_Product extends Controller_Core_Action
 		{
 			$message->addMessage('Product is Not Deleted',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('product','grid');
+		$this->redirect('grid');
 	}
 
 
@@ -187,6 +187,7 @@ class Controller_Product extends Controller_Core_Action
 				throw new Exception("Error Request");
 			}
 			$data = $request->getPost('product');
+			// print_r($data); die;
 			if (!$data) {
 				throw new Exception("no data posted");
 			}
@@ -209,12 +210,12 @@ class Controller_Product extends Controller_Core_Action
 			$product->save();
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Product saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('product','grid');
+			$this->redirect('grid');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Product not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('product','grid');
+			$this->redirect('grid');
 		}
 	}
 

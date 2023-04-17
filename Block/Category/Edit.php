@@ -10,18 +10,18 @@ class Block_Category_Edit extends Block_Core_Template
 	{
 		parent::__construct();
 		$this->setTemplate('category/edit.phtml');
-		$this->getProduct();
+		$this->getCategory();
 	}
 
-	public function getProduct()
+	public function getCategory()
 	{
 		$request=Ccc::getModel('Core_Request');
 		$id =$request->getParams('id');
 		if ($id) {
-			$category = Ccc::getModel('Category_Row')->load($id);
+			$category = Ccc::getModel('Category')->load($id);
 		}
 		else{
-			$category = Ccc::getModel('Category_Row');
+			$category = Ccc::getModel('Category');
 		}
 		$this->setData(['category'=>$category]);
 	}

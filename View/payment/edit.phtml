@@ -8,14 +8,14 @@ $payment = $this->payment;
 
 
     <div class="content-main">
-        <form action="<?php echo ($url->getUrl('payment','save',['id'=>$payment->payment_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
             <table>
                 <tr>
                     <td>
                         <h1>Save Payment Details</h1>
                     </td>
-                    <td class="sub-head">
-                        <a href="<?php echo ($url->getUrl('payment','grid'));?>">Cancel</a>
+                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
+                        
                         <button type="submit">Save</button>
                     </td>
                 </tr>
@@ -36,7 +36,7 @@ $payment = $this->payment;
                         <select name="payment[status]" >
                         <?php foreach ($payment->getResource()->getStatusOptions() as $key => $value): ?>
                             <?php $selected = ($key == $payment->getStatus()) ? 'selected':'' ?>
-                            <option <?php echo $selected; ?>><?php echo $value ?></option>
+                            <option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value ?></option>
                             <?php endforeach; ?>
                     </select>
                     </td>

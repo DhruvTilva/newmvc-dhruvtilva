@@ -4,9 +4,15 @@ class Model_Core_Request
 	//to pass parameter in url
 	public function getParams($key=null,$value=null)
 	{
+		
 		if(array_key_exists($key, $_GET)){
 			return $_GET[$key];
 		}
+
+		if($key == Null){
+			return $_GET;
+		}
+
 		return $value;
 		
 	}

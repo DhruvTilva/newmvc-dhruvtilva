@@ -4,24 +4,69 @@
 /**
  * 
  */
-class Block_Category_Grid extends Block_Core_Template
+class Block_Category_Grid extends Block_Core_Grid
 {
 	
 	function __construct()
 	{
 		parent::__construct();
-		$this->setTemplate('category/grid.phtml');
-		// $this->getCategorys();
+		$this->setTitle('Manage Category Content');
 	}
 
-	public function getCategorys()
+	protected function _prepareColumns()
+	{
+		$this->addColumn('category_id',[
+			'title' => 'Category Id'
+		]);
+		$this->addColumn('name',[
+			'title' => 'Name'
+		]);
+		$this->addColumn('status',[
+			'title' => 'Status'
+		]);
+		$this->addColumn('description',[
+			'title' => 'Description'
+		]);
+		$this->addColumn('inserted_at',[
+			'title' => 'Created at'
+		]);
+		$this->addColumn('updated_at',[
+			'title' => 'Updated at'
+		]);
+
+		return parent::_prepareColumns();
+	}
+
+	protected function _prepareActions()
+	{
+		$this->addAction('edit',[
+			'title' => 'Edit',
+			'method' => 'getEditUrl'
+		]);
+		$this->addAction('delete',[
+			'title' => 'Delete',
+			'method' => 'getDeleteUrl'
+		]);
+
+		return parent::_prepareActions();
+	}
+
+	protected function _prepareButtons()
+	{
+		$this->addButton('category_id',[
+			'title' => 'Add CAtegory',
+			'url' => $this->getUrl('add')
+		]);
+
+		return parent::_prepareButtons();
+	}
+
+	public function getCollection()
 	{
 		$sql = "SELECT * FROM `category` WHERE `category_id` ORDER BY `path` ASC";
 
 		$row = Ccc::getModel('Category');
 		$categorys = $row->fetchAll($sql);
-		// $this->setData(['categorys'=>$categorys]);
-		// print_r($categorys); die;
 		return $categorys;
 	}
 }

@@ -47,7 +47,7 @@
         catch (Exception $e) 
         {
             $message->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
-            $this->redirect('category','grid');
+            $this->redirect('grid');
         }
 
     }
@@ -81,7 +81,7 @@
         catch (Exception $e) 
         {
             $message->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
-            $this->redirect('category','grid');
+            $this->redirect('grid');
         }
 	}
 
@@ -118,12 +118,12 @@
             $category->updatePath();
             $message=Ccc::getModel('Core_Message');
             $message->addMessage('Category saved successfully.', Model_Core_Message::SUCCESS);
-            $this->redirect('category','grid');
+            $this->redirect('grid');
         }
         catch(Exception $e){
             $message=Ccc::getModel('Core_Message');
             $message->addMessage('Category not saved.', Model_Core_Message::FAILURE);
-            $this->redirect('category','grid');
+            $this->redirect('grid');
         }
     }
 
@@ -150,7 +150,7 @@
         {
             $message->addMessage('Category is Not Deleted Properly.',Model_Core_Message::FAILURE);
         } 
-        $this->redirect('category','grid');
+        $this->redirect('grid');
 
     }
  }

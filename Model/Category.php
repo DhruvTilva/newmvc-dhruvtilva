@@ -6,13 +6,21 @@ class Model_Category extends Model_Core_Table
 	protected $resourceClass = 'Model_Category_Resource';
     protected $collectionClass= 'Model_Core_Table_Collection';
 
+	
+
 	public function getParentCategories()
-	{					
-		$query="SELECT `category_id`,`path`
-		FROM `{$this->getTable()->getTableName()}`
-		ORDER BY `path` ASC;";
-		$categories=$this->getTable()->getAdapter()->fetchPairs($query);
-		return $categories;
+	{
+		$request = Ccc::getModel('Core_Request');
+		if($id = (int) $request->getParams('id')){
+			$sql = "SELECT * FROM `category` WHERE `category_id` = '{$id}'";
+			$except = Ccc::getModel('Category')->fetchRow($sql);
+			$sql = "SELECT `category_id`,`path` FROM `category` WHERE `path` NOT LIKE '{$except->path}=%' AND `path` NOT LIKE '{$except->path}' ORDER BY `path` ASC";
+			// print_r($sql); die();
+		}
+		else{
+			$sql = "SELECT `category_id`,`path` FROM `category` ORDER BY `path` ASC";
+		}
+		return $this->getResource()->getAdapter()->fetchPairs($sql);
 	}
 
 
@@ -34,7 +42,7 @@ class Model_Category extends Model_Core_Table
 
 	public function getStatusText()
     {
-        $statues = $this->getTable()->getStatusOptions();
+        $statues = $this->getResource()->getStatusOptions();
         if(array_key_exists($this->status,$statues)){
             return $statues[$this->status];
         }

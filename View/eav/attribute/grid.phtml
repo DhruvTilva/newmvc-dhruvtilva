@@ -1,11 +1,13 @@
 <?php
 $url=Ccc::getModel('Core_Url');
-$attributes = $this->getAttributes();
+$attributes = $this->getCollection();
+// print_r($attributes); die();
+
 ?>
 <div class="content-main">
         <div class="content">
             <h2>Manage Attribute Content</h2>
-            <a href="<?php echo ($url->getUrl('eav_attribute','add'));?>">Add Attribute</a>
+            <a href="<?php echo $url->getUrl('add');?>">Add Attribute</a>
         
         </div>
         <div>
@@ -40,8 +42,8 @@ $attributes = $this->getAttributes();
                     <td><?php echo $row->status; ?></td>
                     <td><?php echo $row->backend_model; ?></td>
                     <td><?php echo $row->input_type; ?></td>
-                    <td><a href="<?php echo ($url->getUrl('eav_attribute','edit',['id'=>$row->attribute_id]));?>">edit</a></td>
-                    <td><a href="<?php echo ($url->getUrl('eav_attribute','delete',['id'=>$row->attribute_id]));?>">delete</a></td>
+                    <td><a href="<?php echo $url->getUrl('edit',Null,['id'=>$row->getId()]) ?>">Edit</td>
+                    <td><a href="<?php echo $url->getUrl('delete',Null,['id'=>$row->getId()]) ?>">Delete</td>
                    
                 </tr>
                 <?php

@@ -44,7 +44,7 @@ class Controller_Salesman extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Salesman not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('salesman','grid');
+			$this->redirect('grid');
 		}   
 
 	}
@@ -75,7 +75,7 @@ class Controller_Salesman extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Salesman Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('salesman','grid');
+			$this->redirect('grid');
 		}
 		
 	}
@@ -124,12 +124,12 @@ class Controller_Salesman extends Controller_Core_Action
 			}
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Salesman saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('salesman','grid');
+			$this->redirect('grid');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Salesman not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('salesman','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -156,7 +156,7 @@ class Controller_Salesman extends Controller_Core_Action
 		{
 			$message->addMessage('Salesman is Not Deleted',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('salesman','grid');
+		$this->redirect('grid');
 }
 
 

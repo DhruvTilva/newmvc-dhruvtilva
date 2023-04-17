@@ -10,6 +10,11 @@ class Model_Core_Table_Resource
 	public $primaryKey = Null;
 	public $adapter = Null;
 
+	 public function __construct()
+    {
+        
+    }
+
 	//setter getter for adapter obj
 	public function setAdapter(Model_Core_Adapter $adapter)
 	{
@@ -86,6 +91,7 @@ class Model_Core_Table_Resource
 		$sql="INSERT INTO `{$this->getTableName()}` ({$keyString}) VALUES ({$valueString})";
 	
 		return $this->getAdapter()->insert($sql);
+		// return $sql;
 
 	}
 

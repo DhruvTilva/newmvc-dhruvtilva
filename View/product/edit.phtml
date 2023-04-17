@@ -9,7 +9,7 @@ $product = $this->product;
 ?>
     <div class="content-main">
         
-        <form action="<?php echo ($url->getUrl('product','save',['id'=>$product->product_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
         <table>
             <tr>
                 <td>
@@ -17,7 +17,7 @@ $product = $this->product;
                 </td>
                 <td class="sub-head">
                     <button type="submit" >Save</button>
-                    <a href="<?php echo ($url->getUrl('product','grid'));?>">Cancel</a>
+                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
                 </td>
             </tr>
         </table>
@@ -53,7 +53,7 @@ $product = $this->product;
                     <select name="product[status]" >
                         <?php foreach ($product->getResource()->getStatusOptions() as $key => $value): ?>
                             <?php $selected = ($key == $product->getStatus()) ? 'selected':'' ?>
-                            <option <?php echo $selected; ?>><?php echo $value ?></option>
+                            <option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value ?></option>
                             <?php endforeach; ?>
                     </select>
                 </td>

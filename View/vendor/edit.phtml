@@ -1,6 +1,5 @@
 <?php
-// $vendor = $this->getVendors();
-// require_once 'Model/Core/Url.php';
+
 $url = new Model_Core_Url();
 $vendor = $this->vendor;
 
@@ -11,14 +10,14 @@ $vendor = $this->vendor;
 
 
     <div class="content-main">
-        <form action="<?php echo ($url->getUrl('vendor','save',['id'=>$vendor->vendor_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
             <table>
                 <tr>
                     <td>
                         <h1>Save Vendor</h1>
                     </td>
                     <td class="sub-head">
-                        <a href="<?php echo ($url->getUrl('vendor','grid'));?>">Cancel</a>
+                        <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
                         <button type="submit">Save</button>
                     </td>
                 </tr>
@@ -69,33 +68,67 @@ $vendor = $this->vendor;
                 </tr>
                
             </table>
-            <table broder="2px" style="border-collapse: collapse">
+            <table  broder="2px" style="border-collapse: collapse">
               
             <tr>
-                <th colspan="2"><h3>Address</h3></th>
+                <th colspan="2"><h3>Shipping Address</h3></th>
             </tr>
             <tr>
                 <td>
                     Address:
                 </td>
-                <td><textarea name="address[address]"><?php echo $vendor->address; ?></textarea></td>
+                <td><textarea name="shippingAddress[address]"><?php echo $vendor->address; ?></textarea></td>
 
             </tr>
             <tr>
                 <td>city:</td>
-                <td><input type="text" name="address[city]" value="<?php echo $vendor->city; ?>"></td>
+                <td><input type="text" name="shippingAddress[city]" value="<?php echo $vendor->city; ?>"></td>
             </tr>
             <tr>
                 <td>state:</td>
-                <td><input type="text" name="address[state]" value="<?php echo $vendor->state; ?>"></td>
+                <td><input type="text" name="shippingAddress[state]" value="<?php echo $vendor->state; ?>"></td>
             </tr>
             <tr>
                 <td>country:</td>
-                <td><input type="text" name="address[country]" value="<?php echo $vendor->country; ?>"></td>
+                <td><input type="text" name="shippingAddress[country]" value="<?php echo $vendor->country; ?>"></td>
             </tr>
             <tr>
                 <td>zipcode:</td>
-                <td><input type="text" name="address[zipcode]" value="<?php echo $vendor->zipcode; ?>"></td>
+                <td><input type="text" name="shippingAddress[zipcode]" value="<?php echo $vendor->zipcode; ?>"></td>
+            </tr>
+            
+            
+        </table>
+
+
+
+        <table  broder="2px" style="border-collapse: collapse">
+              
+            <tr>
+                <th colspan="2"><h3>Shipping Address</h3></th>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td><textarea name="shippingAddress[address]"><?php echo $vendor->address; ?></textarea></td>
+
+            </tr>
+            <tr>
+                <td>city:</td>
+                <td><input type="text" name="shippingAddress[city]" value="<?php echo $vendor->city; ?>"></td>
+            </tr>
+            <tr>
+                <td>state:</td>
+                <td><input type="text" name="shippingAddress[state]" value="<?php echo $vendor->state; ?>"></td>
+            </tr>
+            <tr>
+                <td>country:</td>
+                <td><input type="text" name="shippingAddress[country]" value="<?php echo $vendor->country; ?>"></td>
+            </tr>
+            <tr>
+                <td>zipcode:</td>
+                <td><input type="text" name="shippingAddress[zipcode]" value="<?php echo $vendor->zipcode; ?>"></td>
             </tr>
             
             

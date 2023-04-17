@@ -1,6 +1,9 @@
 <?php 
-// $categories=$this->categories;
-$categorys = $this->getCategorys();
+// echo "<pre>";
+$categorys = $this->getCategorys()->getData();
+// $roe=$categorys->category_id;
+// print_r($roe); die();
+
 
 $url=Ccc::getModel('Core_Url');
 
@@ -11,7 +14,7 @@ $url=Ccc::getModel('Core_Url');
     <div class="content-main">
         <div class="content">
             <h2>Manage Category Content</h2>
-            <a href="<?php echo ($url->getUrl('category','add'));?>">Add Category</a>
+            <a href="<?php echo ($url->getUrl('add'));?>">Add Category</a>
         </div>
         <div>
             <table border="1px">
@@ -26,7 +29,7 @@ $url=Ccc::getModel('Core_Url');
                     <th>Delete</th>
                 </tr>
                 <?php
-               foreach($categorys->getData() as $row){
+               foreach($categorys as $row){
 
                 ?>
                 <tr>

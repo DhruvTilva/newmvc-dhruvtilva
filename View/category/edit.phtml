@@ -1,12 +1,9 @@
 <?php
 
-// $category = $this->getCayegorys();
-// require_once 'Model/Core/Url.php';
 $url = new Model_Core_Url();
-// $category = $this->categories;
-// $category=$this->getData();
 $category=$this->category;
-$parentCategories=$category->getParentCategories();
+$parent=$category->getParentCategories();
+// print_r($parentCategories); die();
 
 
 
@@ -16,14 +13,14 @@ $parentCategories=$category->getParentCategories();
 
 
     <div class="content-main">
-        <form action="<?php echo ($url->getUrl('category','save',['id'=>$category->category_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
             <table>
                 <tr>
                     <td>
                         <h1>Edit Category</h1>
                     </td>
                     <td class="sub-head">
-                        <a href="<?php echo ($url->getUrl('category','grid'));?>">Cancel</a>
+                        <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
                         <button type="submit">Save</button>
                     </td>
                 </tr>
@@ -42,7 +39,7 @@ $parentCategories=$category->getParentCategories();
                     <td>Parent</td>
                     <td>
                         <select name="category[parent_id]">
-                            <?php foreach($parentCategories as $id=>$path){ ?>
+                            <?php foreach($parent as $id=>$path){ ?>
                                 <?php $selected = ($category->selectPath() == $path) ? 'selected':'' ?>
                                 <option value="<?php echo $id ?>" <?php echo $selected ?>><?php echo $category->getPathText($path) ?></option>
                             <?php } ?>

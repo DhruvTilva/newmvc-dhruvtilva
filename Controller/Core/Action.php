@@ -9,6 +9,8 @@ class Controller_Core_Action
 	public $request=null;
 	protected $view=null;
 	protected $layout = Null;
+	protected $url = Null;
+
 
 	protected function setLayout(Block_Core_Layout $layout)
 	{
@@ -25,6 +27,23 @@ class Controller_Core_Action
 		$layout = new Block_Core_Layout();
 		$this->setLayout($layout);
 		return $layout;
+	}
+
+	protected function setUrl(Model_Core_Url $url)
+	{
+		$this->url = $url;
+		return $this;
+	}
+
+	public function getUrl()
+	{
+		if($this->url){
+			return $this->url;
+		}
+
+		$url = new Model_Core_Url();
+		$this->setUrl($url);
+		return $url;
 	}
 
 
@@ -96,17 +115,29 @@ class Controller_Core_Action
 
 
 
-	public function redirect($c,$a,$id=null)
-   {
-      if($id){
-      	header("Location: Index.php?c={$c}&a={$a}&id={$id}");
-        exit();
-   	}
-   	else{
-   		header("Location: Index.php?c={$c}&a={$a}");
-   		exit();
-   	}
-   }
+	// public function redirect($c,$a,$id=null)
+  //  {
+  //     if($id){
+  //     	header("Location: Index.php?c={$c}&a={$a}&id={$id}");
+  //       exit();
+  //  	}
+  //  	else{
+  //  		header("Location: Index.php?c={$c}&a={$a}");
+  //  		exit();
+  //  	}
+   // }
+
+	// public function render()
+	// {
+	// 	$this->getView()->render();
+	// }
+
+	public function redirect($a = Null, $c = Null, $params = [], $resetParams = false)
+	{
+		$url = $this->getUrl();
+		header("Location: {$url->getUrl($a,$c,$params,$resetParams)}");
+		exit();
+	}
 
 	
 

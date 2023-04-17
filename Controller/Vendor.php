@@ -43,7 +43,7 @@ class Controller_Vendor extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Vendor not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('vendor','grid');
+			$this->redirect('grid');
 		} 
 	}
 
@@ -77,7 +77,7 @@ class Controller_Vendor extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Vendor Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('vendor','grid');
+			$this->redirect('grid');
 		}
 
 	}
@@ -124,12 +124,12 @@ class Controller_Vendor extends Controller_Core_Action
 			}
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Vendor saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('vendor','grid');
+			$this->redirect('grid');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Vendor not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('vendor','grid');
+			$this->redirect('grid');
 		}
 	}
 	
@@ -157,7 +157,7 @@ class Controller_Vendor extends Controller_Core_Action
 		{
 			$message->addMessage('Vendor is Not Deleted',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('vendor','grid');
+		$this->redirect('grid');
 	}
 
 }

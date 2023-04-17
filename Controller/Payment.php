@@ -47,7 +47,8 @@ class Controller_Payment extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Payment not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('payment','grid');
+			$this->redirect('grid');
+
 		}
 	}
 
@@ -79,7 +80,7 @@ class Controller_Payment extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Payment Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('payment','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -98,14 +99,16 @@ class Controller_Payment extends Controller_Core_Action
 			if (!$data) {
 				throw new Exception("no data posted");
 			}
-			$id=$request->getParams('id');
+			
 
-			if ($id) {
-				$payment = Ccc::getModel('Payment');
+			if ($id=$request->getParams('id')) {
+				// echo 111; die();
+				$payment = Ccc::getModel('Payment')->load($id);
 				date_default_timezone_set('Asia/Kolkata');
 				$payment->updated_at = date('Y-m-d H:i:s');
 			}
 			else{
+				// echo 111; die();
 				$payment = Ccc::getModel('Payment');
 				date_default_timezone_set('Asia/Kolkata');
 				$payment->created_at = date("Y-m-d h:i:s");
@@ -114,12 +117,12 @@ class Controller_Payment extends Controller_Core_Action
 			$payment->save();
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Payment saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('payment','grid');
+			$this->redirect('grid');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Payment not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('payment','grid');
+			$this->redirect('grid',null,null,true);
 		}
 	}
 
@@ -153,7 +156,7 @@ class Controller_Payment extends Controller_Core_Action
 			$message->addMessage('Payment is Not Deleted.',Model_Core_Message::FAILURE);
 		}
 
-		$this->redirect('payment','grid');
+		$this->redirect('grid',null,null,true);
 	}
 }
 

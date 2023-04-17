@@ -7,7 +7,7 @@ $customer = $this->customer;
 
 
     <div class="content-main">
-        <form action="<?php echo ($url->getUrl('customer','save',['id'=>$customer->customer_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
 
             <div class="tabs">
                 <div class="tab active">Customer Information</div>
@@ -22,7 +22,7 @@ $customer = $this->customer;
                         <h1>Save Customer</h1>
                     </td>
                     <td class="sub-head">
-                        <a href="<?php echo ($url->getUrl('customer','grid'));?>">Cancel</a>
+                        <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
                         <button type="submit">Save</button>
                     </td>
                 </tr>

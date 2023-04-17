@@ -45,7 +45,7 @@ class Controller_Shipping extends Controller_Core_Action
         catch (Exception $e) 
         {
             $message->addMessage('Shipping not Saved.',Model_Core_Message::FAILURE);
-            $this->redirect('shipping','grid');
+            $this->redirect('grid');
         }
     }
 
@@ -76,7 +76,7 @@ class Controller_Shipping extends Controller_Core_Action
         catch (Exception $e) 
         {
             $message->addMessage('Shipping Not Saved',Model_Core_Message::FAILURE);
-            $this->redirect('shipping','grid');
+            $this->redirect('grid');
         }
     }
 
@@ -111,12 +111,12 @@ class Controller_Shipping extends Controller_Core_Action
             $shipping->save();
             $message=Ccc::getModel('Core_Message');
             $message->addMessage('Shipping saved successfully.', Model_Core_Message::SUCCESS);
-            $this->redirect('shipping','grid');
+            $this->redirect('grid');
         }
         catch(Exception $e){
             $message=Ccc::getModel('Core_Message');
             $message->addMessage('Shipping not saved.', Model_Core_Message::FAILURE);
-            $this->redirect('shipping','grid');
+            $this->redirect('grid');
         }
     }
 
@@ -148,7 +148,7 @@ class Controller_Shipping extends Controller_Core_Action
         {
             $message->addMessage('Shipping is Not Deleted',Model_Core_Message::FAILURE);
         }
-        $this->redirect('shipping','grid');
+        $this->redirect('grid');
 
     }
 }

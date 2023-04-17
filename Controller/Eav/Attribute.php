@@ -5,7 +5,11 @@
 
 class Controller_Eav_Attribute extends Controller_Core_Action
 {
-	
+	public function render()
+	{
+		return $this->getView()->render();
+	}
+
 	public function gridAction()
 	{
 
@@ -43,7 +47,7 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 	}	
 	catch (Exception $e) {
 			$message->addMessage('Attribute not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('eav_attribute','grid');	
+			$this->redirect('grid','eav_attribute');	
 		
 	}
 	}
@@ -73,7 +77,7 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 		catch (Exception $e) 
 		{
 			$message->addMessage('Attribute Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('eav_attribute','grid');
+			$this->redirect('grid');
 		}
 	}
 
@@ -103,7 +107,8 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 		{
 			$message->addMessage('Attribute is Not Deleted',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('eav_attribute','grid');
+		$this->redirect('grid',null,null,true);
+		
 	}
 
 
@@ -135,12 +140,13 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 			$attribute->save();
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Attribute saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('eav_attribute','grid');
+			// $this->redirect('grid','eav_attribute');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Attribute not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('eav_attribute','grid');
+			// $this->redirect('grid',null,null,true);
+
 		}
 	}
 }

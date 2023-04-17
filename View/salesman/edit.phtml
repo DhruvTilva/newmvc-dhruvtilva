@@ -8,14 +8,13 @@ $salesman = $this->salesman;
 ?>
 
     <div class="content-main">
-        <form action="<?php echo ($url->getUrl('salesman','save',['id'=>$salesman->salesman_id]));?>" method="post">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
             <table>
                 <tr>
                     <td>
                         <h1>Save Salesman</h1>
                     </td>
-                    <td class="sub-head">
-                        <a href="<?php echo ($url->getUrl('salesman','grid'));?>">Cancel</a>
+                    <td class="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
                         <button type="submit">Save</button>
                     </td>
                 </tr>
@@ -55,8 +54,10 @@ $salesman = $this->salesman;
                     <td>Status: </td>
                     <td>
                         <select name="salesman[status]" id="" value="<?php echo $salesman->status;?>">
-                            <option value="1">Active</option>
-                            <option value="2">Inactive</option>
+                            <?php foreach ($salesman->getResource()->getStatusOptions() as $key => $value): ?>
+                            <?php $selected = ($key == $salesman->getStatus()) ? 'selected':'' ?>
+                            <option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>
