@@ -61,7 +61,7 @@ class Model_Core_Adapter
 		if(!$fetchPairs){
 			return False;
 		}
-		return $fetchPairs->fetch_all();
+		$data = $fetchPairs->fetch_all();
 
 		$column1=array_column($data, '0');
 		$column2=array_column($data, '1');

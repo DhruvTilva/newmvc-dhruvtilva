@@ -1,10 +1,10 @@
 <?php
 
 
-class Model_Payment extends Model_Core_Table
+class Model_Brand extends Model_Core_Table
 {
 	
-    protected $resourceClass = 'Model_Payment_Resource';
+    protected $resourceClass = 'Model_Brand_Resource';
     protected $collectionClass= 'Model_Core_Table_Collection';
 
 	public function getStatusText()
@@ -13,7 +13,7 @@ class Model_Payment extends Model_Core_Table
         if(array_key_exists($this->status,$statues)){
             return $statues[$this->status];
         }
-        return $statues[Model_Payment_Resource::STATUS_DEFAULT];
+        return $statues[Model_Brand_Resource::STATUS_DEFAULT];
     }
 
     public function getStatus()
@@ -21,7 +21,7 @@ class Model_Payment extends Model_Core_Table
         if ($this->status) {
             return $this->status;
         }
-        return Model_Payment_Resource::STATUS_DEFAULT;
+        return Model_Brand_Resource::STATUS_DEFAULT;
     }
 
 

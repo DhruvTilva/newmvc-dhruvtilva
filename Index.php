@@ -66,6 +66,20 @@ class Ccc extends Controller_Core_Action
 		return null;
 	}
 
+	public static function log($data,$fileName='system.log',$newFile=false)		
+	{
+		self::getSingleton('Core_Log')->log($data,$fileName,$newFile);	
+	}
+
+	public static  function getBaseDir($subDir=null)
+	{
+		$dir=getcwd();
+		if ($subDir) {
+			return $dir.$subDir;
+		}
+		return $dir;
+	}
+
 
 	
 

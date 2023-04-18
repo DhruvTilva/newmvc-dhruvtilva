@@ -82,6 +82,7 @@ class Model_Core_Table_Resource
 
 	public function insert($data)
 	{   
+		// print_r($data); die();
 		$keys=array_keys($data);
 		$values=array_values($data);
 
@@ -90,8 +91,10 @@ class Model_Core_Table_Resource
 
 		$sql="INSERT INTO `{$this->getTableName()}` ({$keyString}) VALUES ({$valueString})";
 	
+		// echo $sql;
+		// die;
+		// echo 111; die;
 		return $this->getAdapter()->insert($sql);
-		// return $sql;
 
 	}
 

@@ -1,7 +1,12 @@
-<?php $media = $this->getCollection(); ?>
+<?php 
+$media = $this->getCollection();
+$url = new Model_Core_Url();
+// print_r($url->getUrl('insert')); die();
+
+ ?>
 
 <div class="content">
-<form action="<?php echo $this->getUrl('insert'); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo $url->getUrl('insert'); ?>" method="post" enctype="multipart/form-data">
 	<table cellpadding="20">
 		<tr>
 			<th>Add media</th>

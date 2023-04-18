@@ -1,0 +1,51 @@
+<?php
+
+$url = new Model_Core_Url();
+$item = $this->item;
+
+
+
+?>
+
+
+    <div class="content-main">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <h1>Save Payment Details</h1>
+                    </td>
+                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
+                        
+                        <button type="submit">Save</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="2px" style="border-collapse: collapse">
+         
+                <tr>
+                    <td>Sku: </td>
+                    <td><input type="text" name="item[sku]" value="<?php echo $item->sku;?>"></td>
+                </tr>
+                
+                    <td>Status: </td>
+                    <td>
+                        <select name="item[status]" >
+                        <?php foreach ($item->getResource()->getStatusOptions() as $key => $value) :?>
+                        <?php $selected = ($item->getStatus() == $key) ? 'selected':'' ?>
+                        <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    </td>
+                </tr>
+                <?php foreach ($item->getCollection()->getData() as $key => $value):?>
+                <tr>
+                    <td><?php echo $value->name ?> : </td>
+                    <td><?php $this->getLayout()->createBlock('Eav_Attribute_Input')->setInputType($value->input_type)->getAttributes() ?></td>
+                </tr>
+                    <?php endforeach; ?>
+
+            </table>
+        </form>
+    </div>
+       

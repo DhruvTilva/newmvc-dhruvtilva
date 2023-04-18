@@ -3,6 +3,8 @@
  * 
  * 
  */
+
+
 class Controller_Media extends Controller_Core_Action
 {
 	public function gridAction()
@@ -28,6 +30,8 @@ class Controller_Media extends Controller_Core_Action
 		}
 	}
 
+
+
 	public function addAction()
 	{
 		$message=Ccc::getModel('Core_Message');
@@ -45,12 +49,7 @@ class Controller_Media extends Controller_Core_Action
 			
 			$layout->getChild('content')->addChild('add', $add)->getChildren();
 			$layout->render();
-			// $this->getView()
-			// 	->setTemplate('Product_Media/add.phtml')
-			// 	->setData([
-			// 		'media' => $media
-			// 	]);
-			// $this->render();
+			
 		} 
 		catch (Exception $e) {
 			$message->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
@@ -84,6 +83,7 @@ class Controller_Media extends Controller_Core_Action
 				throw new Exception("Unable to save data.", 1);
 			}
 			$mediaId = $row->media_id;
+			print_r($mediaId); die;
 
 			$imgName = explode('.',$_FILES['image']['name']);
 			$extension = $imgName[1];
@@ -103,8 +103,10 @@ class Controller_Media extends Controller_Core_Action
 		}
 		
 		$url = new Model_Core_Url();
-		$this->redirect($url->getUrl('grid','product_media'));
+		$this->redirect($url->getUrl('grid'));
 	}
+
+
 
 	public function updateAction()
 	{
@@ -173,8 +175,10 @@ class Controller_Media extends Controller_Core_Action
 		}
 
 		$url = new Model_Core_Url();
-		$this->redirect($url->getUrl('grid','product_media',['id'=>$id]));
+		$this->redirect($url->getUrl('grid'));
 	}
+
+
 
 	public function deleteAction()
 	{
@@ -196,7 +200,7 @@ class Controller_Media extends Controller_Core_Action
 		}	
 
 		$url = new Model_Core_Url();
-		$this->redirect($url->getUrl('grid','product_media',['id'=>$id],true));	
+		$this->redirect($url->getUrl('grid'));	
 	}
 }
 

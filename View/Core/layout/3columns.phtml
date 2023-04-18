@@ -1,24 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>3column Grid</title>
-	<style>
-		.header{
-			height: 100px;
-			
-		}
-		.message{
-			height: 20px;
-		}
-		.footer{
-			height: 100px;
-		}
-
-	</style>
-</head>
+<?php $this->createBlock('Html_Head')->render(); ?>
 <body>
 	<table border="2px" width="100%">
 	<tr class="header"><td colspan="3" width="100%"><?php $this->getChild('header')->render();?></td></tr>

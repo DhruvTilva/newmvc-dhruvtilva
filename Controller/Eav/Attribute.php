@@ -22,10 +22,6 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 		$layout->getChild('content')
 			->addChild('grid',$grid);
 		$layout->render();
-
-		// echo "<pre>";
-		// print_r($collection);
-		
 	}
 
 
@@ -119,7 +115,7 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 			if(!$request->isPost()){
 				throw new Exception("Error Request");
 			}
-			$data = $request->getPost('eav_attribute');
+			$data = $request->getPost('attribute');
 			if (!$data) {
 				throw new Exception("no data posted");
 			}
@@ -130,22 +126,23 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 				
 			}
 			else{
+			
 				$attribute= Ccc::getModel('Eav_Attribute');
 				date_default_timezone_set('Asia/Kolkata');
 				$attribute->created_at = date("Y-m-d h:i:s");
 
 			}
-			// echo"<pre>";
+			
 			$attribute->setData($data);
 			$attribute->save();
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Attribute saved successfully.', Model_Core_Message::SUCCESS);
-			// $this->redirect('grid','eav_attribute');
+			$this->redirect('grid','eav_attribute');
 		}
 		catch(Exception $e){
 			$message=Ccc::getModel('Core_Message');
 			$message->addMessage('Attribute not saved.', Model_Core_Message::FAILURE);
-			// $this->redirect('grid',null,null,true);
+			$this->redirect('grid',null,null,true);
 
 		}
 	}

@@ -182,6 +182,7 @@ class Model_Core_Table
 		$request= new Model_Core_Request();            
 		if($request->getParams('id'))
 		{
+			// echo 111; die();
 			$id = $request->getParams('id');
 			$resource->setTableName($this->getTableName());
 			$resource->setPrimaryKey($this->getPrimaryKey());
@@ -190,6 +191,7 @@ class Model_Core_Table
 		}
 		else
 		{
+			// echo 111; die();
 			$resource->setTableName($this->getTableName());
 			// $resource->getResourceName();
 			$result = $resource->insert($this->data);
