@@ -26,7 +26,7 @@ class Model_Core_Request
 		if($key=null){
 			return $_POST;
 		}
-		return $_POST;
+		return $value;
 	}
 
 	//to check data is posted or not

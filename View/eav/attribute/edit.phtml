@@ -1,6 +1,8 @@
 <?php 
 
+
 $attribute = $this->attribute;
+// print_r($attribute); die();
 $options = $this->options;
 
 $url=Ccc::getModel('Core_Url');
@@ -57,17 +59,17 @@ $url=Ccc::getModel('Core_Url');
                 <td>name </td>
                 <td><input type="text" name="attribute[name]" value="<?php echo $attribute->name;?>"></td>
             </tr>
-
-            <td>Status: </td>
-            <td>
-                <select class="form-control" name="attribute[status]">
-                    <?php foreach ($attribute->getResource()->getStatusOptions() as $key => $value) :?>
-                    <?php $selected = ($attribute->getStatus() == $key) ? 'selected':'' ?>
-                    <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-                <?php endforeach; ?>
-            </select>
-        </td>
-    </tr>
+            <tr>
+                <td>Status: </td>
+                <td>
+                    <select name="attribute[status]" >
+                        <?php foreach ($attribute->getResource()->getStatusOptions() as $key => $value): ?>
+                            <?php $selected = ($key == $attribute->getStatus()) ? 'selected':'' ?>
+                            <option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
     
     <tr>
         <td>backendmodel: </td>
@@ -126,8 +128,7 @@ $url=Ccc::getModel('Core_Url');
 </table>
 <script type="text/javascript">
     $(".removeOption").click(function(){
-        $(this).parent().parent().remove();
-    });
+        $(this).parent().parent().remove();    });
 
     $("#addOption").click(function(){
         $('#inputTypeOptionTable').prepend($('#inputTypeOptionDefault').html());

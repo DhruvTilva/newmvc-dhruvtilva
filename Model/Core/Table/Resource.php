@@ -1,7 +1,6 @@
 <?php
 
 
-require_once 'Model/Core/Adapter.php';
 
 
 class Model_Core_Table_Resource 
@@ -68,14 +67,22 @@ class Model_Core_Table_Resource
 	public function fetchAll($query)
 	{
 		$adapter = $this->getAdapter();
-		return $adapter->fetchAll($query);
+		$result= $adapter->fetchAll($query);
+		if(!$result){
+			return false;
+		}
+		return $result;
 	}
 
 
 	public function fetchRow($query)
 	{
 		$adapter = $this->getAdapter();
-		return $adapter->fetchRow($query);
+		$result= $adapter->fetchRow($query);
+		if(!$result){
+			return false;
+		}
+		return $result;
 	}
 
 
@@ -139,6 +146,13 @@ class Model_Core_Table_Resource
 		return true;
 	}
 
+
+	// public function insertUpdateOnDuplicate($arrayData, $uniqueColumns)
+	// {
+	// 	$keyString = '`'.implode('`,`', array_keys($arrayData)).'`';
+	// 	$valueString = "'".implode("','", array_values($arrayData))."'";
+	// 	$sql = "INSERT INTO `{$this->getTableName()}` ({$keyString}) VALUES ({$valueString})";
+	// }
 }
 
 ?>

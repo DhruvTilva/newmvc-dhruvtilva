@@ -1,8 +1,9 @@
 <?php
 
 $url = new Model_Core_Url();
-$brand = $this->brand;
+// $brand = $this->brand;
 // print_r($brand); die();
+$row=$this->getRow();
 
 
 
@@ -26,15 +27,15 @@ $brand = $this->brand;
          
                 <tr>
                     <td>Name: </td>
-                    <td><input type="text" name="brand[name]" value="<?php echo $brand->name;?>"></td>
+                    <td><input type="text" name="brand[name]" value="<?php echo $row->name;?>"></td>
                 </tr>
                 <tr>
                     <td>Description: </td>
-                    <td><input type="text" name="brand[description]" value="<?php echo $brand->description;?>"></td>
+                    <td><input type="text" name="brand[description]" value="<?php echo $row->description;?>"></td>
                 </tr>
                 <tr>
                     <td>Image: </td>
-                    <td><input type="text" name="brand[image]" value="<?php echo $brand->image;?>"></td>
+                    <td><input type="text" name="brand[image]" value="<?php echo $row->image;?>"></td>
                 </tr>
 
                 

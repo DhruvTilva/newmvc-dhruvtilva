@@ -4,72 +4,72 @@
  * 
  */
 
-class Block_Eav_Attribute_Grid extends Block_Core_Template
+class Block_Eav_Attribute_Grid extends Block_Core_Grid
 {
 	
-	function __construct()
-	{
-		parent::__construct();
-		$this->setTemplate('eav/attribute/grid.phtml');
-	}
-
-
 	// function __construct()
 	// {
 	// 	parent::__construct();
-	// 	$this->setTitle('Manage Attribute Content');
+	// 	$this->setTemplate('eav/attribute/grid.phtml');
 	// }
 
-	// protected function _prepareColumns()
-	// {
-	// 	$this->addColumn('attribute_id',[
-	// 		'title' => 'Attribute Id'
-	// 	]);
-	// 	$this->addColumn('code',[
-	// 		'title' => 'Name'
-	// 	]);
-	// 	$this->addColumn('backend_type',[
-	// 		'title' => 'Backend Type'
-	// 	]);
-	// 	$this->addColumn('name',[
-	// 		'title' => 'name'
-	// 	]);
-	// 	$this->addColumn('status',[
-	// 		'title' => 'Status'
-	// 	]);
-	// 	$this->addColumn('backend_model',[
-	// 		'title' => 'BAckend Model'
-	// 	]);
-	// 	$this->addColumn('input_type',[
-	// 		'title' => 'Input Type'
-	// 	]);
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->setTitle('Manage Attribute Content');
+	}
+
+	protected function _prepareColumns()
+	{
+		$this->addColumn('attribute_id',[
+			'title' => 'Attribute Id'
+		]);
+		$this->addColumn('code',[
+			'title' => 'Name'
+		]);
+		$this->addColumn('backend_type',[
+			'title' => 'Backend Type'
+		]);
+		$this->addColumn('name',[
+			'title' => 'name'
+		]);
+		$this->addColumn('status',[
+			'title' => 'Status'
+		]);
+		$this->addColumn('backend_model',[
+			'title' => 'BAckend Model'
+		]);
+		$this->addColumn('input_type',[
+			'title' => 'Input Type'
+		]);
 		
-	// 	return parent::_prepareColumns();
-	// }
+		return parent::_prepareColumns();
+	}
 
-	// protected function _prepareActions()
-	// {
-	// 	$this->addAction('edit',[
-	// 		'title' => 'Edit',
-	// 		'method' => 'getEditUrl'
-	// 	]);
-	// 	$this->addAction('delete',[
-	// 		'title' => 'Delete',
-	// 		'method' => 'getDeleteUrl'
-	// 	]);
+	protected function _prepareActions()
+	{
+		$this->addAction('edit',[
+			'title' => 'Edit',
+			'method' => 'getEditUrl'
+		]);
+		$this->addAction('delete',[
+			'title' => 'Delete',
+			'method' => 'getDeleteUrl'
+		]);
 
-	// 	return parent::_prepareActions();
-	// }
+		return parent::_prepareActions();
+	}
 
-	// protected function _prepareButtons()
-	// {
-	// 	$this->addButton('attribute_id',[
-	// 		'title' => 'Add Attribute',
-	// 		'url' => $this->getUrl('add')
-	// 	]);
+	protected function _prepareButtons()
+	{
+		$this->addButton('attribute_id',[
+			'title' => 'Add Attribute',
+			'url' => $this->getUrl('add')
+		]);
 
-	// 	return parent::_prepareButtons();
-	// }
+		return parent::_prepareButtons();
+	}
 
 	public function getCollection()
 	{

@@ -40,7 +40,8 @@ class Controller_Brand extends Controller_Core_Action
 
 			$layout = new Block_Core_Layout();
 			$edit = $layout->createBlock('Brand_Edit');
-			$edit->setData(['brand'=>$brand]);
+			// $edit->setData(['brand'=>$brand]);
+			$edit->setRow($brand);
 			$layout->getChild('content')->addChild('edit',$edit);
 			$layout->render();	
 		} 
@@ -72,7 +73,8 @@ class Controller_Brand extends Controller_Core_Action
 		
 			$layout = new Block_Core_Layout();
 			$edit = $layout->createBlock('Brand_Edit');
-			$edit->setData(['brand'=>$brand]);
+			// $edit->setData(['brand'=>$brand]);
+			$edit->setRow($brand);
 			$layout->getChild('content')
 					->addChild('edit',$edit);
 			$layout->render();	

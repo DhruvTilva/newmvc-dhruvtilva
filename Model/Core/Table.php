@@ -36,7 +36,9 @@ class Model_Core_Table
     }
 
     public function __unset($key){
-    	unset($this->data[$key]);
+    	if (array_key_exists($key, $this->data)) {
+				unset($this->data[$key]);
+		}
     	return $this;
     }
 

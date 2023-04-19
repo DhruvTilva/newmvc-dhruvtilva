@@ -1,6 +1,5 @@
 <?php
-require_once 'Model/Core/Adapter.php';
-require_once 'Model/Core/Request.php';
+
 
 class Controller_Core_Action
 {
@@ -10,6 +9,8 @@ class Controller_Core_Action
 	protected $view=null;
 	protected $layout = Null;
 	protected $url = Null;
+	protected $messageObj = Null;
+
 
 
 	protected function setLayout(Block_Core_Layout $layout)
@@ -27,6 +28,22 @@ class Controller_Core_Action
 		$layout = new Block_Core_Layout();
 		$this->setLayout($layout);
 		return $layout;
+	}
+	protected function setMessageObj(Model_Core_Message $message)
+	{
+		$this->messageObj = $message;
+		return $this;
+	}
+
+	public function getMessageObj()
+	{
+		if($this->messageObj){
+			return $this->messageObj;
+		}
+
+		$message = new Model_Core_Message();
+		$this->setMessageObj($message);
+		return $message;
 	}
 
 	protected function setUrl(Model_Core_Url $url)

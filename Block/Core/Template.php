@@ -54,9 +54,35 @@ class Block_Core_Template extends Model_Core_View
 
 	public function getChild($key)
 	{
+		if (!array_key_exists($key,$this->children)) {
+				return false;
+		}
 		return $this->children[$key];
 	}
 
+	
+	public function getChildHtml($key)
+	{
+		if(!$key){
+			return false;
+		}
+
+		$child = $this->getChild($key);
+		if($child){
+			return $child->toHtml();
+		}
+		return false;
+	}
+
+	//to catch the template of html without direct rendering
+	public function toHtml()
+	{
+		ob_start();
+		$this->render();
+		$content = ob_get_contents();
+		ob_end_clean();
+		return $content;
+	}
 
 	
 }

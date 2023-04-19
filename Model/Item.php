@@ -30,6 +30,11 @@ class Model_Item extends Model_Core_Table
 	public function getAttributes()
 	{
 		$sql = "SELECT * FROM `eav_attribute` WHERE `entity_type_id` = 8 AND `status` = 1";
-		return $this->fetchAll($sql);
+		return Ccc::getModel('Eav_Attribute')->fetchAll($sql);
+	}
+	public function getAttributeValue($attribute)
+	{
+		$sql = "SELECT `value` FROM `item_{$attribute->backend_type}` WHERE `entity_id` = '{$this->getId()}' AND `attribute_id` = '{$attribute->getId()}'";
+		return $this->getResource()->getAdapter()->fetchOne($sql);
 	}
 }
