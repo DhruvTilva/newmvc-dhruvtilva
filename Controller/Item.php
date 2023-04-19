@@ -16,34 +16,54 @@ class Controller_Item extends Controller_Core_Action
 
 	public function addAction()
 	{
-		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Item_Edit');
-		$item = Ccc::getModel('Item');
-		$edit->setData(['item'=>$item]);
-		$layout->getChild('content')
-			->addChild('edit',$edit);
-		$layout->render();
-	}
-	public function editAction()
-	{
-		try {
-			if(!$id = $this->getRequest()->getParams('id')){
+		$message = Ccc::getModel('Core_Message');
+
+		try 
+		{
+			$item = Ccc::getModel('Item');
+			if(!$item){
 				throw new Exception("Invalid request.", 1);
 			}
-			$layout = $this->getLayout();
-			$edit = $layout->createBlock('Item_Edit');
-			$item = Ccc::getModel('Item')->load($id);
-			if(!$item){
-				throw new Exception("Item not found.", 1);
-			}
 
-			$edit->setRow($item);
-			$layout->getChild('content')
-				->addChild('edit',$edit);
-			$layout->render();
+			$layout = new Block_Core_Layout();
+			$edit = $layout->createBlock('Item_Edit');
+			$edit->setData(['item'=>$item]);
+			$layout->getChild('content')->addChild('edit',$edit);
+			$layout->render();	
 		} 
-		catch (Exception $e) {
-			$this->getMessageObject()->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
+		catch (Exception $e) 
+		{
+			$message->addMessage('Item not Saved.',Model_Core_Message::FAILURE);
+			$this->redirect('grid');
+
+		}
+	}
+
+	public function editAction()
+	{
+		$message = Ccc::getModel('Core_Message');
+		try
+		{
+		$request = $this->getRequest();
+		$id = (int) $request->getParams('id');
+		if(!$id){
+    		throw new Exception("Invalid ID.", 1);
+		}
+		$item = Ccc::getModel('Item')->load($id);
+		if(!$item){
+			throw new Exception("Data Not Found.", 1);
+		}
+		
+			$layout = new Block_Core_Layout();
+			$edit = $layout->createBlock('Item_Edit');
+			$edit->setData(['item'=>$item]);
+			$layout->getChild('content')
+					->addChild('edit',$edit);
+			$layout->render();	
+		} 
+		catch (Exception $e) 
+		{
+			$message->addMessage('Item Not Saved',Model_Core_Message::FAILURE);
 			$this->redirect('grid');
 		}
 	}

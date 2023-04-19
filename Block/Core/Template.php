@@ -35,7 +35,7 @@ class Block_Core_Template extends Model_Core_View
 
 	public function getLayout()
 	{
-		return $this->layout();
+		return $this->layout;
 	}
 
 	public function removeChildren($key)
