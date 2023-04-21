@@ -1,0 +1,46 @@
+<?php 
+$media = $this->getCollection();
+$url = new Model_Core_Url();
+// print_r($url->getUrl('insert')); die();
+
+ ?>
+
+<div class="content">
+<form action="<?php echo $url->getUrl('insert'); ?>" method="post" enctype="multipart/form-data">
+	<table cellpadding="20">
+		<tr>
+			<th>Add media</th>
+			<th><a href="<?php echo $this->getUrl('grid'); ?>">Cancel</a></th>
+			<th>
+				<input type="submit" name="submit" value="submit">
+			</th>
+		</tr>
+	</table>
+	<br>
+	<table border="1">
+		<tr>
+			<td>name</td>
+			<td>
+				<input type="text" name="media[name]">
+			</td>
+		</tr>
+		<tr>
+			<td>status</td>
+			<td>
+				<select name="media[status]">
+					<?php foreach($media->getResource()->getStatusOptions() as $key => $value): ?>
+					<?php $selected = ($key == $media->getStatus()) ? 'selected' : ''; ?>
+					<option value="<?php echo $key; ?>"<?php echo $selected; ?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Image</td>
+			<td>
+				<input type="file" id="myimg" name="image">
+			</td>
+		</tr>
+	</table>
+</form>
+</div>

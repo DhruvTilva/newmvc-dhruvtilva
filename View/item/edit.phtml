@@ -1,0 +1,57 @@
+<?php
+
+$url = new Model_Core_Url();
+$row = $this->item;
+// $row = $this->getRow();
+// print_r($row); die;
+// print_r($row->getAttributes()); die;
+
+
+
+
+?>
+
+
+    <div class="content-main">
+        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <h1>Save Item Details</h1>
+                    </td>
+                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
+                        
+                        <button type="submit">Save</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="2px" style="border-collapse: collapse">
+         
+                <tr>
+                    <td>Sku: </td>
+                    <td><input type="text" name="item[sku]" value="<?php echo $row->sku;?>"></td>
+                </tr>
+                
+                    <td>Status: </td>
+                    <td>
+                        <select name="item[status]" >
+                        <?php foreach ($row->getResource()->getStatusOptions() as $key => $value) :?>
+                        <?php $selected = ($row->getStatus() == $key) ? 'selected':'' ?>
+                        <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    </td>
+                </tr>
+                    <?php foreach ($row->getAttributes()->getData() as $key => $attribute):?>
+
+                <tr>
+                    <td><?php echo $attribute->name ?> : </td>
+                    <td><?php $this->getLayout()->createBlock('Eav_Attribute_InputType')->setAttribute($attribute)->setRow($row)->render() ?>
+                </td>
+                </tr>
+                    <?php endforeach; ?>
+
+            </table>
+        </form>
+    </div>
+       

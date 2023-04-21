@@ -1,0 +1,58 @@
+<?php
+// $vendors = $this->getVendors();
+// // print_r($vendors);
+// require_once 'Model/Core/Url.php';
+// require_once 'Model/Core/Table/Row.php';
+
+$vendors = $this->getVendors();
+
+$url = new Model_Core_Url();
+?>
+
+    <div class="content-main">
+        <div class="content">
+            <h2>Manage Vendor Content</h2>
+            <a href="<?php echo ($url->getUrl('vendor','add'));?>">Add Vender</a>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <th>Vender_id</th>
+                    <th>First_name</th>
+                    <th>Last_name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>inserted_at</th>
+                    <th>updated_at</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <?php
+                foreach($vendors->getData() as $row){
+
+                ?>
+                <tr>
+                    <td><?php echo $row->vendor_id; ?></td>
+                    <td><?php echo $row->firstname; ?></td>
+                    <td><?php echo $row->lastname; ?></td>
+                    <td><?php echo $row->mail; ?></td>
+                    <td><?php echo $row->gender; ?></td>
+                    <td><?php echo $row->no; ?></td>
+                    <td><?php echo $row->getStatusText(); ?></td>
+                    <td><?php echo $row->company; ?></td>
+                    <td><?php echo $row->inserted_at; ?></td>
+                    <td><?php echo $row->updated_at; ?></td>
+                    
+                    <td><a href="<?php echo ($url->getUrl('vendor','edit',['id'=>$row->vendor_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('vendor','delete',['id'=>$row->vendor_id]));?>">delete</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+     

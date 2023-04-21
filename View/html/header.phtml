@@ -1,0 +1,45 @@
+<?php
+
+$url=new Model_Core_Url();
+
+?>
+
+
+<style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+       .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3px;
+        background-color: lightgrey;
+
+       }
+       
+       .header a{
+        color: black;
+        padding: 30px;
+        justify-content: center;
+        font-size: large;
+       }
+       
+       
+    </style>
+
+
+
+<div class="header">
+        <h2>BMVC Structure</h2>
+	<a href="<?php echo $url->getUrl('grid','product',null,true)?>">Product</a>
+	<a href="<?php echo $url->getUrl('grid','category',null,true)?>">Category</a>
+	<a href="<?php echo $url->getUrl('grid','customer',null,true)?>">Customer</a>
+	<a href="<?php echo $url->getUrl('grid','vendor',null,true)?>">Vendor</a>
+	<a href="<?php echo $url->getUrl('grid','salesman',null,true)?>">Salesman</a>
+	<a href="<?php echo $url->getUrl('grid','shipping',null,true)?>">Shipping Method</a>
+	<a href="<?php echo $url->getUrl('grid','payment',null,true)?>">Payment Method</a>
+        <a href="<?php echo $url->getUrl('grid','eav_attribute',null,true)?>">EAV</a>
+        <a href="<?php echo $url->getUrl('grid','item',null,true)?>">Item</a>
+        <a href="<?php echo $url->getUrl('grid','brand',null,true)?>">Brand</a>
+        <a href="<?php echo $url->getUrl('grid','cart',null,true)?>">Cart</a>
+</div>

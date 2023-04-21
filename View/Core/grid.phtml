@@ -1,0 +1,49 @@
+<?php
+
+$url=Ccc::getModel('Core_Url');
+$rows = $this->getCollection();
+
+
+
+
+
+?>
+
+    <div class="content-main">
+        <div class="content">
+            <h2><?php echo $this->getTitle() ?></h2>
+           <?php foreach ($this->getButtons() as $key => $button) :?>
+            <a href="<?php echo $button['url'] ?>"><?php echo $button['title'] ?></a>
+            <?php endforeach; ?>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <?php foreach ($this->getColumns() as $column) :?>
+                    <th><?php echo $column['title'] ?></th>
+                    <?php endforeach; ?>
+                    <?php foreach ($this->getActions() as $action) :?>
+                    <th><?php echo $action['title'] ?></th>
+                    <?php endforeach; ?>
+                </tr>
+                <?php
+                //feching data to form from database
+                foreach($rows->getData() as $row){
+
+                ?>
+                <tr>
+                    <?php foreach ($this->getColumns() as $key => $column) :?>
+                    <td><?php echo $this->getColumnValue($row, $key) ?></td>
+                    <?php endforeach; ?>
+                    <?php foreach ($this->getActions() as $key => $action) :?>
+                    <td><a href="<?php $method = $action['method']; echo $this->$method($row, $key) ?>"><?php echo $action['title'] ?></a></td>
+                    <?php endforeach; ?>
+
+                   
+                </tr>
+                    <?php
+                    }
+                    ?>
+            </table>
+        </div>
+    </div>

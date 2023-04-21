@@ -1,0 +1,54 @@
+<?php $medias = $this->medias; ?>
+
+<div class="content">
+	<form action="<?php echo $this->getUrl('update','product_media'); ?>" method="POST">
+	<table width="100%">
+		<tr style="font-size: 20px;">
+			<th>Media</th>
+			<th ><a href="<?php echo $this->getUrl('add'); ?>">ADD</a></th>
+			<a href="<?php echo $this->getUrl('grid','product'); ?>">BACK</a>
+			<th>
+				<input type="submit" name="submit" value="submit">
+			</th>
+		</tr>
+	</table>
+	<br>
+	<table border="1" width="100%">
+		<tr>
+			<th>media_id</th>
+			<th>image</th>
+			<th>base</th>
+			<th>small</th>
+			<th>thumbnail</th>
+			<th>gallery</th>
+			<th>delete</th>
+		</tr>
+		<?php if (!$medias): ?>
+		<tr>
+			<td colspan="7">No media found.</td>
+		</tr>
+		<?php else: ?>
+		<?php foreach ($medias->getData() as $media): ?>
+		<tr>
+			<td><?php echo $media->media_id; ?></td>
+			<td>
+				<img src="./View/Product_Media/images/<?php echo $media->image; ?>" width="100">
+			</td>
+			<td>
+				<input type="radio" name="base" value="<?php echo $media->media_id; ?>"<?php if($media->base == 1){echo 'checked';} ?>>
+			</td>
+			<td>
+				<input type="radio" name="small" value="<?php echo $media->media_id; ?>"<?php if($media->small == 1){echo 'checked';} ?>>
+			</td>
+			<td>
+				<input type="radio" name="thumb" value="<?php echo $media->media_id; ?>"<?php if($media->thumb == 1){echo 'checked';} ?>>
+			</td>
+			<td>
+				<input type="checkbox" name="gallery[]" value="<?php echo $media->media_id; ?>"<?php if($media->gallery == 1){echo 'checked';} ?>>
+			</td>
+			<td><a href="<?php echo $this->getUrl('delete',null,['media_id'=>$media->media_id]); ?>">Delete</td>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</table>
+	</form>
+</div>

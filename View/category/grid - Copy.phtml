@@ -1,0 +1,50 @@
+<?php 
+// echo "<pre>";
+$categorys = $this->getCategorys()->getData();
+// $roe=$categorys->category_id;
+// print_r($roe); die();
+
+
+$url=Ccc::getModel('Core_Url');
+
+
+?>
+
+
+    <div class="content-main">
+        <div class="content">
+            <h2>Manage Category Content</h2>
+            <a href="<?php echo ($url->getUrl('add'));?>">Add Category</a>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <th style="width : 150px">Category_id</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th>inserted_at</th>
+                    <th>updated_at</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <?php
+               foreach($categorys as $row){
+
+                ?>
+                <tr>
+                    <td><?php echo $row->category_id; ?></td>
+                    <td><?php echo $row->name;?></td>
+                    <td><?php echo $row->getStatusText(); ?></td>
+                    <td><?php echo $row->description; ?></td>
+                    <td><?php echo $row->inserted_at; ?></td>
+                    <td><?php echo $row->updated_at; ?></td>
+                    <td><a href="<?php echo ($url->getUrl('category','edit',['id'=>$row->category_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('category','delete',['id'=>$row->category_id]));?>">delete</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
+    </div>

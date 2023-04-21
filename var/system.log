@@ -1,0 +1,43 @@
+2023-04-18 08:53:10:Model_Product Object
+(
+    [resourceClass:protected] => Model_Product_Resource Object
+        (
+            [tableName] => product
+            [primaryKey] => product_id
+            [adapter] => Model_Core_Adapter Object
+                (
+                    [servername] => localhost
+                    [username] => root
+                    [password] => 
+                    [dbname] => project-dhruv-tilva
+                )
+
+        )
+
+    [collectionClass:protected] => Model_Core_Table_Collection
+    [data:protected] => Array
+        (
+            [product_id] => 93
+            [name] => Spykar
+            [sku] => 0
+            [cost] => 0
+            [price] => 0
+            [description] => Demin jeans!
+            [status] => 0
+            [color] => blue
+            [material] => denim
+            [inserted_at] => 2023-03-31 15:04:36
+            [updated_at] => 2023-03-31 15:04:36
+        )
+
+    [resource:protected] => Model_Product_Resource Object
+        (
+            [tableName] => product
+            [primaryKey] => product_id
+            [adapter] => 
+        )
+
+    [collection:protected] => 
+)
+
+

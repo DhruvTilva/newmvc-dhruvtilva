@@ -1,0 +1,43 @@
+2023-04-18 08:55:33:Model_Product Object
+(
+    [resourceClass:protected] => Model_Product_Resource Object
+        (
+            [tableName] => product
+            [primaryKey] => product_id
+            [adapter] => Model_Core_Adapter Object
+                (
+                    [servername] => localhost
+                    [username] => root
+                    [password] => 
+                    [dbname] => project-dhruv-tilva
+                )
+
+        )
+
+    [collectionClass:protected] => Model_Core_Table_Collection
+    [data:protected] => Array
+        (
+            [product_id] => 81
+            [name] => it
+            [sku] => 0
+            [cost] => 0
+            [price] => 0
+            [description] => eded
+            [status] => 1
+            [color] => 
+            [material] => 
+            [inserted_at] => 2023-03-30 13:37:11
+            [updated_at] => 2023-03-31 06:44:15
+        )
+
+    [resource:protected] => Model_Product_Resource Object
+        (
+            [tableName] => product
+            [primaryKey] => product_id
+            [adapter] => 
+        )
+
+    [collection:protected] => 
+)
+
+
