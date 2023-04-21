@@ -127,6 +127,13 @@ class Block_Core_Grid extends Block_Core_Template
 		return $this;
 	}
 
+// --------------------------------------
+	public function paymentRedirect()
+	{
+	
+		// return header("Location: http://localhost/Project/newmvc-dhruvtilva/View/order/payment.phtml");
+	}
+
 	public function removeButton($key)
 	{
 		unset($this->_buttons[$key]);

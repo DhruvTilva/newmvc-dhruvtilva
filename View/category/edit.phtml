@@ -36,7 +36,7 @@ $parent=$category->getParentCategories();
                     <td><input type="text" name="category[name]" value="<?php echo $category->name;?>"></td>
                 </tr>
                 <tr>
-                    <td>Parent</td>
+                    <td>Parent:</td>
                     <td>
                         <select name="category[parent_id]">
                             <?php foreach($parent as $id=>$path){ ?>
@@ -47,16 +47,16 @@ $parent=$category->getParentCategories();
                     </td>
                 </tr>
                 <tr>
-                    <td>Status</td>
-                    <td>
-                        <select name="category[status]">
-                            <?php foreach ($category->getResource()->getStatusOptions() as $key => $value){?>
+                <td>Status: </td>
+                <td>
+                    <select name="category[status]" >
+                        <?php foreach ($category->getResource()->getStatusOptions() as $key => $value): ?>
                             <?php $selected = ($key == $category->getStatus()) ? 'selected':'' ?>
-                            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
+                            <option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
                 
                 <tr>
                     <td>Description: </td>

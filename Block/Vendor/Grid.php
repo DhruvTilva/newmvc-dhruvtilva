@@ -16,7 +16,7 @@ class Block_Vendor_Grid extends Block_Core_Grid
 	protected function _prepareColumns()
 	{
 		$this->addColumn('vendor_id',[
-			'title' => 'Salesman Id'
+			'title' => 'Vendor Id'
 		]);
 		$this->addColumn('firstname',[
 			'title' => 'First Name'

@@ -1,169 +1,168 @@
-<?php 
-require_once 'Controller/Core/Action.php';
-require_once 'Model/Cart.php';
-require_once 'Model/Product.php';
+<?php
 
 class Controller_Cart extends Controller_Core_Action
 {
-
-	protected $products = [];
-	protected $shipping = [];
-	protected $cart = [];
-	
-	public function setProducts($products)
+	public function render()
 	{
-		$this->products = $products;
-		return $this;
+		return $this->getView()->render();
 	}
 
-	public function getProducts()
-	{
-		return $this->products;
-	}
 
-	public function setShipping($shipping)
-	{
-		$this->shipping = $shipping;
-		return $this;
-	}
-
-	public function getShipping()
-	{
-		return $this->shipping;
-	}
-
-	public function setCart($cart)
-	{
-		$this->cart = $cart;
-		return $this;
-	}
-
-	public function getCart()
-	{
-		return $this->cart;
-	}
-
-	public function cartAction()
+	public function gridAction()
 	{
 
-		$sql = "SELECT * FROM `product`";
-		$model = new Model_Cart();
-		$products = $model->fetchAll($sql);
-
-		if(!$products){
-			echo "<h1>Don't Have Any Data.</h1>";
-		}
-
-		$this->setProducts($products);
-
-		$sql = "SELECT `name`,`amount` FROM `shipping`";
-		$shippings = $model->fetchAll($sql);
-		$this->setShipping($shippings);
-
-		$sql = "SELECT p.name, p.sku , c.* FROM `product` p INNER JOIN `cart_item` c WHERE p.`product_id` = c.`product_id`";
-		$cartItems = $model->fetchAll($sql);
-		$this->setCart($cartItems);
-		$this->getTemplate('cart/cart.phtml');
-
-	}
-	public function addAction()
-	{
-
-		$this->getTemplate('product/add.phtml');
-
-	}
-	public function editAction()
-	{
-		$request = $this->getRequest();
-
-		$id = (int) $request->getParams('id');
-		if(!$id){
-    		throw new Exception("Invalid ID.", 1);
-		}
-
-		// $sql = "SELECT * FROM `product` WHERE `product_id` = '$id';";
-		$productModel = new Model_Product();
-		$product = $productModel->setTableName('product')->load($id);
-
-		if(!$product){
+        $sql = "SELECT * FROM `cart`";
+		$cartRow = Ccc::getModel('Cart'); 
+		$carts = $cartRow->fetchAll($sql);
+		if(!$carts){
 			throw new Exception("Data Not Found.", 1);
 		}
 
-		$this->setProducts($product);
-		$this->getTemplate('product/edit.phtml');
-
+		$layout = new Block_Core_Layout();
+		$grid = $layout->createBlock('Cart_Grid');
+		$layout->getChild('content')->addChild('grid',$grid);
+		$layout->render();
 	}
-	public function insertAction()
+
+
+
+
+	public function addAction()
 	{
+		$message = Ccc::getModel('Core_Message');
 
-		$request = $this->getRequest();
+		try 
+		{
+			$cart = Ccc::getModel('Cart');
+			if(!$cart){
+				throw new Exception("Invalid request.", 1);
+			}
 
-		if(!$request->isPost()){
-			throw new Exception("Data is not inserted.", 1);
+			$layout = new Block_Core_Layout();
+			$edit = $layout->createBlock('Cart_Edit');
+			// $edit->setData(['brand'=>$brand]);
+			$edit->setRow($cart);
+			$layout->getChild('content')->addChild('edit',$edit);
+			$layout->render();	
+		} 
+		catch (Exception $e) 
+		{
+			$message->addMessage('CArt not Saved.',Model_Core_Message::FAILURE);
+			$this->redirect('grid');
+
 		}
-		
-		$cart = $request->getPost('cart');
-		$arrayData = explode('=',$cart['item']);
-		array_push($arrayData, $cart['quantity']);
-		$arrayKeys = ['product_id','cost','price','quantity'];
-		$array = array_combine($arrayKeys, $arrayData);
-
-		$cartModel = new Model_Cart();
-		$result = $cartModel->insert($array);
-		print_r($result);
-		die();
-
-
-		$this->redirect('product','grid');
-
 	}
-	public function updateAction()
-	{
 
+
+
+
+	public function editAction()
+	{
+		$message = Ccc::getModel('Core_Message');
+		try
+		{
 		$request = $this->getRequest();
-		
 		$id = (int) $request->getParams('id');
 		if(!$id){
     		throw new Exception("Invalid ID.", 1);
 		}
-
-		if(!$request->isPost()){
-    		throw new Exception("Invalid Request.", 1);
+		$cart = Ccc::getModel('Cart')->load($id);
+		if(!$cart){
+			throw new Exception("Data Not Found.", 1);
 		}
-
-		$product = $request->getPost('product');
-
-		$productModel = new Model_Product();
-		$productResult = $productModel->update($product, $id);
-
-		if(!$productResult){
-			throw new Exception("Error Data is Not Updated.", 1);
+		
+			$layout = new Block_Core_Layout();
+			$edit = $layout->createBlock('Cart_Edit');
+			// $edit->setData(['brand'=>$brand]);
+			$edit->setRow($cart);
+			$layout->getChild('content')
+					->addChild('edit',$edit);
+			$layout->render();	
+		} 
+		catch (Exception $e) 
+		{
+			$message->addMessage('Cart Not Saved',Model_Core_Message::FAILURE);
+			$this->redirect('grid');
 		}
-
-		$this->redirect('product','grid');
-
 	}
+
+
+
+
+
+	public function saveAction()
+	{
+		try{ 
+			$request=Ccc::getModel('Core_Request');
+			if(!$request->isPost()){
+				throw new Exception("Error Request");
+			}
+			$data = $request->getPost('cart');
+			if (!$data) {
+				throw new Exception("no data posted");
+			}
+			$id=$request->getParams('id');
+
+			if ($id) {
+				$cart=Ccc::getModel('Cart');
+				date_default_timezone_set('Asia/Kolkata');
+				$brand->updated_at=date('Y-m-d H:i:s');
+				
+			}
+			else{
+
+				$cart= Ccc::getModel('Cart');
+				date_default_timezone_set('Asia/Kolkata');
+				$cart->created_at = date("Y-m-d h:i:s");
+
+			}
+			// echo"<pre>";
+			$cart->setData($data);
+			$cart->save();
+			$message=Ccc::getModel('Core_Message');
+			$message->addMessage('cart saved successfully.', Model_Core_Message::SUCCESS);
+			$this->redirect('grid',null,null,true);
+		}
+		catch(Exception $e){
+			$message=Ccc::getModel('Core_Message');
+			$message->addMessage('grid not saved.', Model_Core_Message::FAILURE);
+			$this->redirect('grid',null,null,true);
+		}
+	}
+
+
+
+
+
+
+	
 	public function deleteAction()
 	{
-
+		try
+		{
+		$message=Ccc::getModel('Core_Message');
 		$request = $this->getRequest();
-
 		$id = (int) $request->getParams('id');
 		if(!$id){
     		throw new Exception("Invalid ID.", 1);
 		}
+		$cartModelRow = Ccc::getModel('Cart');
+		$cartModelRow->load($id);
+		$cartResult = $cartModelRow->delete();
 
-		$productModel = new Model_Product();
-		$productResult = $productModel->delete($id);
-
-		if(!$productResult){
-			throw new Exception("Error Data is Not Deleted.", 1);
+		if(!$cartModelRow){
+			throw new Exception("Data is Not Deleted.", 1);
+		}
+		$message->addMessage('cart Deleted Successfully.',Model_Core_Message::SUCCESS);
+		}
+		catch(Exception $e)
+		{
+			$message->addMessage('cart is Not Deleted.',Model_Core_Message::FAILURE);
 		}
 
-		$this->redirect('product','grid');
-		
+		$this->redirect('grid',null,null,true);
 	}
-	
 }
+
 
 ?>

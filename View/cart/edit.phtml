@@ -1,0 +1,58 @@
+<?php
+
+$url = new Model_Core_Url();
+
+$cart=$this->getRow();
+
+
+
+
+?>
+
+
+    <div class="content-main">
+        <form action="<?php echo ($url->getUrl('save','cart'));?>" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <h1>Save Cart Details</h1>
+                    </td>
+                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
+                        
+                        <button type="submit">Save</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="2px" style="border-collapse: collapse">
+         
+                <tr>
+                    <td>Cart_id: </td>
+                    <td><input type="text" name="cart[cart_id]" value="<?php echo $cart->cart_id;?>"></td>
+                </tr>  
+                <tr>
+                    <td>Customer_id: </td>
+                    <td><input type="text" name="cart[customer_id]" value="<?php echo $cart->customer_id;?>"></td>
+                </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td><input type="text" name="cart[status]" value="<?php echo $cart->status;?>"></td>
+                </tr> 
+                <tr>
+                    <td>Payment_id: </td>
+                    <td><input type="text" name="cart[payment_id]" value="<?php echo $cart->payment_id;?>"></td>
+                </tr>
+                 <tr>
+                    <td>Shipping_id: </td>
+                    <td><input type="text" name="cart[shipping_id]" value="<?php echo $cart->shipping_id;?>"></td>
+                </tr>
+                 <tr>
+                    <td>Amount: </td>
+                    <td><input type="text" name="cart[amount]" value="<?php echo $cart->amount;?>"></td>
+                </tr>
+
+                
+                
+            </table>
+        </form>
+    </div>
+       

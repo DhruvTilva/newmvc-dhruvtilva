@@ -29,13 +29,13 @@ class Controller_Product extends Controller_Core_Action
 	public function gridAction()
 	{
 		
-		$sql = "SELECT * FROM `product`";
-		$productR = Ccc::getModel('Product'); 
-		$products = $productR->fetchAll($sql);
-		if(!$products)
-		{
-			throw new Exception("Data Not Found.", 1);
-		}
+		// $sql = "SELECT * FROM `product`";
+		// $productR = Ccc::getModel('Product'); 
+		// $products = $productR->fetchAll($sql);
+		// if(!$products)
+		// {
+		// 	throw new Exception("Data Not Found.", 1);
+		// }
 		// echo "<pre>";
 		$layout = new Block_Core_Layout();
 		$grid = $layout->createBlock('Product_Grid');
