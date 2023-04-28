@@ -10,7 +10,7 @@ class Block_Product_Grid extends Block_Core_Grid
 	function __construct()
 	{
 		parent::__construct();
-		$this->setTitle('Manage Product Content');
+		$this->setTitle('Manage Product Content With Ajax');
 	}
 
 	protected function _prepareColumns()
@@ -85,8 +85,6 @@ class Block_Product_Grid extends Block_Core_Grid
 		$sql = "SELECT * FROM `product` ORDER BY `product_id` DESC";
 		$row = Ccc::getModel('Product');
 		$products = $row->fetchAll($sql);
-		// print_r($products); die();
-		// $this->setData(['products'=>$products]);
 		return $products;
 		
 	}

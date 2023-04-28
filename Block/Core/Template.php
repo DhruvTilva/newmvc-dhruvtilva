@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 
 /**
@@ -19,7 +19,7 @@ class Block_Core_Template extends Model_Core_View
 
 	public function setChildren(array $children)
 	{
-		$this->children=$children;
+		$this->children = $children;
 		return $this;
 	}
 
@@ -28,6 +28,7 @@ class Block_Core_Template extends Model_Core_View
 		
 		return $this->children;
 	}
+	
 	public function setLayout(Block_Core_Layout $layout)
 	{
 		$this->layout = $layout;

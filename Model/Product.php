@@ -4,8 +4,7 @@
 
 class Model_Product extends Model_Core_Table
 {
-	// protected $tableName = 'product';
-	// protected $primaryKey = 'product_id';
+
 	protected $resourceClass = 'Model_Product_Resource';
     protected $collectionClass= 'Model_Core_Table_Collection';
 

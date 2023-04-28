@@ -2,26 +2,22 @@
 
 class Controller_Payment extends Controller_Core_Action
 {
-	public function render()
+	public function indexAction()
 	{
-		return $this->getView()->render();
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Core_Layout')->setTemplate('core/index.phtml');
+		$layout->getChild('content')->addChild('grid',$grid);
+		echo $layout->toHtml();
 	}
 
 
 	public function gridAction()
 	{
-
-        $sql = "SELECT * FROM `payment`";
-		$paymentRow = Ccc::getModel('Payment'); 
-		$payments = $paymentRow->fetchAll($sql);
-		if(!$payments){
-			throw new Exception("Data Not Found.", 1);
-		}
-
-		$layout = new Block_Core_Layout();
+		$layout = $this->getLayout();
 		$grid = $layout->createBlock('Payment_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();
+		echo $layout->toHtml();
+
 	}
 
 
@@ -42,7 +38,9 @@ class Controller_Payment extends Controller_Core_Action
 			$edit = $layout->createBlock('Payment_Edit');
 			$edit->setData(['payment'=>$payment]);
 			$layout->getChild('content')->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
@@ -75,7 +73,9 @@ class Controller_Payment extends Controller_Core_Action
 			$edit->setData(['payment'=>$payment]);
 			$layout->getChild('content')
 					->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{

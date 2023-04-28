@@ -10,6 +10,25 @@ class Controller_Core_Action
 	protected $layout = Null;
 	protected $url = Null;
 	protected $messageObj = Null;
+	protected $pager = Null;
+
+
+	public function setPagination(Model_Core_Pagination $pager)
+	{
+		$this->pager = $pager;
+		return $this;
+	}
+
+	public function getPagination($totalRecords, $currentPage)
+	{
+		if($this->pager){
+			return $this->pager;
+		}
+
+		$pager = new Model_Core_Pagination($totalRecords, $currentPage);
+		$this->setPager($pager);
+		return $pager;
+	}
 
 
 

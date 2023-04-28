@@ -1,168 +1,54 @@
-<?php
+<?php 
 
-class Controller_Cart extends Controller_Core_Action
+/**
+ * 
+ */
+class Controller_Quote extends Controller_Core_Action
 {
-	public function render()
+	public function newAction()
 	{
-		return $this->getView()->render();
+		$layout = $this->getLayout();
+		$quote = Ccc::getModel('cart');
+		$edit = $layout->createBlock('cart_Edit');
+		$edit->setRow($quote);
+		$edit = $edit->toHtml();
+		echo json_encode(['html'=> $edit,
+            'element' => 'content'
+        ]);
+        @header("content-Type:application/json");
 	}
 
-
-	public function gridAction()
+	public function setIdAction()
 	{
-
-        $sql = "SELECT * FROM `cart`";
-		$cartRow = Ccc::getModel('Cart'); 
-		$carts = $cartRow->fetchAll($sql);
-		if(!$carts){
-			throw new Exception("Data Not Found.", 1);
-		}
-
-		$layout = new Block_Core_Layout();
-		$grid = $layout->createBlock('Cart_Grid');
-		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();
+		$id = $this->getRequest()->getParams('customer_id');
+		Ccc::getModel('Core_Session')->set('customer_id', $id);
+		$this->redirect('new',null,null,true);
 	}
 
-
-
-
-	public function addAction()
+	public function saveBillingAddress()
 	{
-		$message = Ccc::getModel('Core_Message');
-
-		try 
-		{
-			$cart = Ccc::getModel('Cart');
-			if(!$cart){
-				throw new Exception("Invalid request.", 1);
-			}
-
-			$layout = new Block_Core_Layout();
-			$edit = $layout->createBlock('Cart_Edit');
-			// $edit->setData(['brand'=>$brand]);
-			$edit->setRow($cart);
-			$layout->getChild('content')->addChild('edit',$edit);
-			$layout->render();	
-		} 
-		catch (Exception $e) 
-		{
-			$message->addMessage('CArt not Saved.',Model_Core_Message::FAILURE);
-			$this->redirect('grid');
-
-		}
-	}
-
-
-
-
-	public function editAction()
-	{
-		$message = Ccc::getModel('Core_Message');
-		try
-		{
-		$request = $this->getRequest();
-		$id = (int) $request->getParams('id');
-		if(!$id){
-    		throw new Exception("Invalid ID.", 1);
-		}
-		$cart = Ccc::getModel('Cart')->load($id);
-		if(!$cart){
-			throw new Exception("Data Not Found.", 1);
-		}
+		$postData = $this->getRequest()->getPost();
+		$postAddress = $postData['billing'];
+		print_r($postData);
 		
-			$layout = new Block_Core_Layout();
-			$edit = $layout->createBlock('Cart_Edit');
-			// $edit->setData(['brand'=>$brand]);
-			$edit->setRow($cart);
-			$layout->getChild('content')
-					->addChild('edit',$edit);
-			$layout->render();	
-		} 
-		catch (Exception $e) 
-		{
-			$message->addMessage('Cart Not Saved',Model_Core_Message::FAILURE);
-			$this->redirect('grid');
-		}
 	}
 
-
-
-
-
-	public function saveAction()
+	public function saveShippingAddress()
 	{
-		try{ 
-			$request=Ccc::getModel('Core_Request');
-			if(!$request->isPost()){
-				throw new Exception("Error Request");
-			}
-			$data = $request->getPost('cart');
-			if (!$data) {
-				throw new Exception("no data posted");
-			}
-			$id=$request->getParams('id');
-
-			if ($id) {
-				$cart=Ccc::getModel('Cart');
-				date_default_timezone_set('Asia/Kolkata');
-				$brand->updated_at=date('Y-m-d H:i:s');
-				
-			}
-			else{
-
-				$cart= Ccc::getModel('Cart');
-				date_default_timezone_set('Asia/Kolkata');
-				$cart->created_at = date("Y-m-d h:i:s");
-
-			}
-			// echo"<pre>";
-			$cart->setData($data);
-			$cart->save();
-			$message=Ccc::getModel('Core_Message');
-			$message->addMessage('cart saved successfully.', Model_Core_Message::SUCCESS);
-			$this->redirect('grid',null,null,true);
-		}
-		catch(Exception $e){
-			$message=Ccc::getModel('Core_Message');
-			$message->addMessage('grid not saved.', Model_Core_Message::FAILURE);
-			$this->redirect('grid',null,null,true);
-		}
+		$postData = $this->getRequest()->getPost();
+		$postAddress = $postData['shipping'];
+		print_r($postAddress);
 	}
 
-
-
-
-
-
-	
-	public function deleteAction()
+	public function saveAddressAction()
 	{
-		try
-		{
-		$message=Ccc::getModel('Core_Message');
-		$request = $this->getRequest();
-		$id = (int) $request->getParams('id');
-		if(!$id){
-    		throw new Exception("Invalid ID.", 1);
+		echo "<pre>";
+		$postData = $this->getRequest()->getPost();
+		if($postData['saveBilling']){
+			$this->saveBillingAddress();
 		}
-		$cartModelRow = Ccc::getModel('Cart');
-		$cartModelRow->load($id);
-		$cartResult = $cartModelRow->delete();
-
-		if(!$cartModelRow){
-			throw new Exception("Data is Not Deleted.", 1);
+		elseif($postData['saveShipping']){
+			$this->saveShippingAddress();
 		}
-		$message->addMessage('cart Deleted Successfully.',Model_Core_Message::SUCCESS);
-		}
-		catch(Exception $e)
-		{
-			$message->addMessage('cart is Not Deleted.',Model_Core_Message::FAILURE);
-		}
-
-		$this->redirect('grid',null,null,true);
 	}
 }
-
-
-?>

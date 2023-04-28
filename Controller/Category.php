@@ -23,7 +23,9 @@
         $layout = new Block_Core_Layout();
         $grid = $layout->createBlock('Category_Grid');
         $layout->getChild('content')->addChild('grid',$grid);
-        $layout->render();
+        // $layout->render();
+        echo $layout->toHtml();
+
 
     } 
 
@@ -42,7 +44,9 @@
             $edit = $layout->createBlock('Category_Edit');
             $edit->setData(['category'=>$category]);
             $layout->getChild('content')->addChild('edit',$edit);
-            $layout->render();
+            // $layout->render();
+            echo $layout->toHtml();
+
         }
         catch (Exception $e) 
         {
@@ -76,7 +80,9 @@
             $edit->setData(['category'=>$category]);
             $layout->getChild('content')
                     ->addChild('edit',$edit);
-            $layout->render();
+            // $layout->render();
+             echo $layout->toHtml();
+
         } 
         catch (Exception $e) 
         {

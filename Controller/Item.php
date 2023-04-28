@@ -11,7 +11,9 @@ class Controller_Item extends Controller_Core_Action
 		$grid = $layout->createBlock('Item_Grid');
 		$layout->getChild('content')
 			->addChild('grid',$grid);
-		$layout->render();
+		// $layout->render();
+		echo $layout->toHtml();
+
 	}
 
 	public function addAction()
@@ -29,7 +31,9 @@ class Controller_Item extends Controller_Core_Action
 			$edit = $layout->createBlock('Item_Edit');
 			$edit->setData(['item'=>$item]);
 			$layout->getChild('content')->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
@@ -59,7 +63,9 @@ class Controller_Item extends Controller_Core_Action
 			$edit->setData(['item'=>$item]);
 			$layout->getChild('content')
 					->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
@@ -115,10 +121,10 @@ class Controller_Item extends Controller_Core_Action
 					}
 				}
 			}
-			$this->getMessageObject()->addMessage("Item saved successfully.");
+			$this->getMessageObj()->addMessage("Item saved successfully.");
 		}
 		catch (Exception $e) {
-			$this->getMessageObject()->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
+			$this->getMessageObj()->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
 		}
 		$this->redirect('grid',null,null,true);
 	}
@@ -136,10 +142,10 @@ class Controller_Item extends Controller_Core_Action
 				throw new Exception("Unable to delete product.", 1);
 			}
 
-			$messageObject = $this->getMessageObject()->addMessage("Item deleted successfully.");
+			$messageObject = $this->getMessageObj()->addMessage("Item deleted successfully.");
 		}
 		catch (Exception $e) {
-			$messageObject = $this->getMessageObject()->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
+			$messageObject = $this->getMessageObj()->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
 		}
 
 		$this->redirect('grid',null,null,true);

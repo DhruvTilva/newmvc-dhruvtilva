@@ -23,7 +23,9 @@ class Controller_Media extends Controller_Core_Action
 			$grid = $layout->createBlock('ProductMedia_Media');
 			
 			$layout->getChild('content')->addChild('grid', $grid)->getChildren();
-			$layout->render();
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) {
 			$message->addMessage($e->getMessage(),Model_Core_Message::FAILURE);
@@ -48,7 +50,9 @@ class Controller_Media extends Controller_Core_Action
 			$add = $layout->createBlock('ProductMedia_Add');
 			
 			$layout->getChild('content')->addChild('add', $add)->getChildren();
-			$layout->render();
+			// $layout->render();
+			echo $layout->toHtml();
+
 			
 		} 
 		catch (Exception $e) {

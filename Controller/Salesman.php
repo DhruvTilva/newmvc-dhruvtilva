@@ -23,7 +23,9 @@ class Controller_Salesman extends Controller_Core_Action
 		$layout = new Block_Core_Layout();
 		$grid = $layout->createBlock('Salesman_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();   
+		// $layout->render(); 
+		echo $layout->toHtml();
+
 
 	}
 	 
@@ -39,7 +41,9 @@ class Controller_Salesman extends Controller_Core_Action
 			$edit = $layout->createBlock('Salesman_Edit');
 			$edit->setData(['salesman'=>$salesman]);
 			$layout->getChild('content')->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+		    echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
@@ -70,7 +74,9 @@ class Controller_Salesman extends Controller_Core_Action
 			$edit->setData(['salesman'=>$salesman]);
 			$layout->getChild('content')
 					->addChild('edit',$edit);
-			$layout->render();
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
