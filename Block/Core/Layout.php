@@ -35,6 +35,9 @@ class Block_Core_Layout extends Block_Core_Template
 
           $message = $this->createBlock('Html_Message');
           $this->addChild('message',$message);
+
+          $head = $this->createBlock('Html_head');
+          $this->addChild('head', $head);
       
      
           

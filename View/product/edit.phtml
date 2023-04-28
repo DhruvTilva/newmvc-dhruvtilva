@@ -1,25 +1,27 @@
 <?php 
 $url = new Model_Core_Url();
-$product = $this->product;
+$product = $this->getRow();
+
 
 
 
 ?>
     <div class="content-main">
         
-        <form action="<?php echo ($url->getUrl('save'));?>" method="post">
+        <form action="" method="post">
         <table>
             <tr>
                 <td>
                     <h1>Save Product</h1>
                 </td>
                 <td class="sub-head">
-                    <button type="submit" >Save</button>
-                    <a href="<?php echo ($url->getUrl('grid'));?>">Cancel</a>
+                    <button type="button" onclick="ajax.setUrl('<?php echo $this->getUrl('save','product') ?>').setForm('product').call()" >Save</button>
+             
+                    <button type="button"  value="Cancel" onclick="ajax.setUrl('<?php echo $this->getUrl('grid',Null,Null,true);?>').call()">Cancel</button>
                 </td>
             </tr>
         </table>
-        <table border = "2px" style = "border-collapse : collapse;">
+        <table border = "2px" style = "border-collapse : collapse;">                         
            
             <tr>
                 <td>Product_id: </td>

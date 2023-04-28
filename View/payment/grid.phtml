@@ -1,0 +1,107 @@
+<?php
+$url=Ccc::getModel('Core_Url');
+$payments = $this->getCollection();
+$pager = $this->getPagination();
+
+
+
+
+
+?>
+
+    <div class="content-main">
+        <div class="content">
+            <h2>Manage Payment</h2>
+            <a href="<?php echo ($url->getUrl('add','payment'));?>">Add Payment</a>
+        </div>
+        <div>
+            <table border="1px">
+                <tr>
+                    <th style="width : 20px">Payment_Method_id</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>inserted_at</th>
+                    <th>updated_at</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <?php
+                //feching data to form from database
+                foreach($payments->getData() as $row){
+
+                ?>
+                <tr>
+                    <!-- all attributes of database -->
+                    <td><?php echo $row->payment_id; ?></td>
+                    <td><?php echo $row->name; ?></td>
+                    <td><?php echo $row->amount; ?></td>
+                    <td><?php echo $row->getStatusText(); ?></td>
+                    <td><?php echo $row->inserted_at; ?></td>
+                    <td><?php echo $row->updated_at; ?></td>
+                    
+                    <td><a href="<?php echo ($url->getUrl('edit','payment',['id'=>$row->payment_id]));?>">edit</a></td>
+                    <td><a href="<?php echo ($url->getUrl('delete','payment',['id'=>$row->payment_id]));?>">delete</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+
+
+            </table>
+
+            <?php if($pager->getNumberOfPage()>1): ?>
+
+        <!--  <ul>
+            <li id="start"><a onclick="ajax.setUrl('<?php echo $this->getUrl(Null,Null,['p'=>$pager->getStart()],true) ?>').call()">Start</a></li>
+            <li id="previous"><a onclick="ajax.setUrl('<?php echo $this->getUrl(Null,Null,['p'=>$pager->getPrevious()],true) ?>').call()">Previous</a></li>
+            <?php for ($i=1; $i <= $pager->getNumberOfPage(); $i++) :?>
+            <li><a onclick="ajax.setUrl('<?php echo $this->getUrl(Null,Null,['p'=>$i],true) ?>').call()"><?php echo $i ?></a></li>
+            <?php endfor; ?>
+            <li id="next"><a onclick="ajax.setUrl('<?php echo $this->getUrl(Null,Null,['p'=>$pager->getNext()],true) ?>').call()">Next</a></li>
+            <li id="end"><a  onclick="ajax.setUrl('<?php echo $this->getUrl(Null,Null,['p'=>$pager->getEnd()],true) ?>').call()">End</a></li>
+        </ul> -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+
+        <?php endif; ?>
+
+   
+
+          
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        if(<?php echo $pager->getStart() ?> === 0){
+            $('#start').addClass('disabled');
+        }else{
+            $('#start').removeClass('disabled');
+        }
+
+        if(<?php echo $pager->getPrevious() ?> === 0){
+            $('#previous').addClass('disabled');
+        }else{
+            $('#previous').removeClass('disabled');
+        }
+
+        if(<?php echo $pager->getNext() ?> === 0){
+            $('#next').addClass('disabled');
+        }else{
+            $('#next').removeClass('disabled');
+        }
+
+        if(<?php echo $pager->getEnd() ?> === 0){
+            $('#end').addClass('disabled');
+        }else{
+            $('#end').removeClass('disabled');
+        }
+    });
+    </script>

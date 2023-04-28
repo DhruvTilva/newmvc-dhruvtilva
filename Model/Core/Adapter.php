@@ -5,7 +5,7 @@ class Model_Core_Adapter
 	public $servername="localhost";
 	public $username="root";
 	public $password="";
-	public $dbname = "project-dhruv-tilva";
+	public $dbname = "newmvc-dhruvtilva";
 
 
 	//to make connection
@@ -44,14 +44,15 @@ class Model_Core_Adapter
 		return $fetchRow->fetch_assoc();
 	}
 
-	public function fetchOne()
+	public function fetchOne($sql)
 	{
-		$fetchOne=$this->query($query);
-		if(!$fetchOne){
-			return False;
+		$result = $this->query($sql);
+		if($result->num_rows == 0){
+			return Null;
 		}
-		$row= $fetchOne->fetch_array();
-		return (array_key_exists(0,$row))?$row[0]:null;
+
+		$oneRow = $result->fetch_array();
+		return (array_key_exists(0, $oneRow)) ? $oneRow[0] : null;
 	}
 
 

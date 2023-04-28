@@ -1,20 +1,17 @@
 <?php
-
 $url=Ccc::getModel('Core_Url');
 $rows = $this->getCollection();
-
-
-
-
-
 ?>
 
     <div class="content-main">
         <div class="content">
             <h2><?php echo $this->getTitle() ?></h2>
            <?php foreach ($this->getButtons() as $key => $button) :?>
-            <a href="<?php echo $button['url'] ?>"><?php echo $button['title'] ?></a>
+            <!-- <a href="<?php echo $button['url'] ?>"><?php echo $button['title'] ?></a> -->
+            <a onclick="ajax.setUrl('<?php echo $button['url'];?>').call()">
+            <?php echo $button['title'] ?>
             <?php endforeach; ?>
+            </a>
         </div>
         <div>
             <table border="1px">
@@ -36,7 +33,11 @@ $rows = $this->getCollection();
                     <td><?php echo $this->getColumnValue($row, $key) ?></td>
                     <?php endforeach; ?>
                     <?php foreach ($this->getActions() as $key => $action) :?>
-                    <td><a href="<?php $method = $action['method']; echo $this->$method($row, $key) ?>"><?php echo $action['title'] ?></a></td>
+                    <!-- <td><a href="<?php $method = $action['method']; echo $this->$method($row, $key) ?>"><?php echo $action['title'] ?></a></td> -->
+                    <td>
+                        <a onclick="ajax.setUrl('<?php $method = $action['method'];echo $this->$method($row, $key)?>').call()"><?php echo $action['title'] ?>
+                </a>
+                    </td>
                     <?php endforeach; ?>
 
                    

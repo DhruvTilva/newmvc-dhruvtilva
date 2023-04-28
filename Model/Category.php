@@ -40,6 +40,25 @@ class Model_Category extends Model_Core_Table
 		}
 	}
 
+	public function getPathText($path = Null)
+	{
+		$path = ($path) ? $path : $this->path;
+		$categoryId = explode('=', $path);
+		$final = [];
+		foreach ($categoryId as $id) {
+			if($id > 1){
+				$sql = "SELECT `name` FROM `category` WHERE `category_id` = '{$id}'";
+				$except = Ccc::getModel('Category')->fetchRow($sql);
+				$final[] = $except->name;
+			}
+		}
+
+		if(!$final){
+			return 'Root';
+		}
+		return implode('=>', $final);
+	}
+
 	public function getStatusText()
     {
         $statues = $this->getResource()->getStatusOptions();
@@ -57,6 +76,10 @@ class Model_Category extends Model_Core_Table
         return Model_Category_Resource::STATUS_DEFAULT;
     }
 
+    public function selectPath()
+	{
+		return str_replace('='.$this->category_id, '', $this->path);
+	}
 
     
 

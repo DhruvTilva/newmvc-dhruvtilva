@@ -27,7 +27,7 @@ class Controller_Core_Front
 		$controller=$request->getControllerName();
 
 		if($controller=='index'){
-			header('location: http://localhost/Project/newmvc-dhruvtilva/Index.php?c=product&a=grid');
+			header('location: http://localhost/Project/newmvc-dhruvtilva/Index.php?c=product&a=index');
 		}
 		
 		$controller='Controller_'.ucwords($controller,'_');

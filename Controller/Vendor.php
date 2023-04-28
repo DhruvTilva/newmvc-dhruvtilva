@@ -19,7 +19,9 @@ class Controller_Vendor extends Controller_Core_Action
         $layout = new Block_Core_Layout();
 		$grid = $layout->createBlock('Vendor_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();   
+		// $layout->render(); 
+		echo $layout->toHtml();
+
 	}
 
 
@@ -38,7 +40,9 @@ class Controller_Vendor extends Controller_Core_Action
 			$edit = $layout->createBlock('Vendor_Edit');
 			$edit->setData(['vendor'=>$vendor]);
 			$layout->getChild('content')->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{
@@ -72,7 +76,9 @@ class Controller_Vendor extends Controller_Core_Action
 			$edit->setData(['vendor'=>$vendor]);
 			$layout->getChild('content')
 					->addChild('edit',$edit);
-			$layout->render();	
+			// $layout->render();	
+			echo $layout->toHtml();
+
 		} 
 		catch (Exception $e) 
 		{

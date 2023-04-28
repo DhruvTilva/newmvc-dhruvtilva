@@ -1,17 +1,15 @@
 
-<!DOCTYPE html>
-<html>
-<?php $this->createBlock('Html_Head')->render(); ?>
+<?php echo $this->getChild('head')->toHtml(); ?>
 <body>
 	<table border="2px" width="100%">
-	<tr class="header"><td colspan="3" width="100%"><?php $this->getChild('header')->render();?></td></tr>
+	<tr class="header"><td colspan="3" width="100%"><?php echo $this->getChildHtml('header');?></td></tr>
 	<tr class="message"><td colspan="3"><?php $this->getChild('message')->render(); ?></td></tr>
 	<tr class="content">
-		<!-- <td><?php $this->getChild('left')->render(); ?></td> -->
+		<!-- <td><?php echo $this->getChildHtml('left');?></td> -->
 		<td><?php echo $this->getChildHtml('content');?></td>
-		<!-- <td><?php $this->getChild('right')->render(); ?></td>	 -->
+		<!-- <td><?php echo $this->getChildHtml('right');?></td>	 -->
 	</tr>
-	<tr class="footer"><td colspan="3"><?php $this->getChild('footer')->render();?></td></tr>
+	<tr class="footer"><td colspan="3"><?php echo $this->getChildHtml('footer');?></td></tr>
 	
 
 
